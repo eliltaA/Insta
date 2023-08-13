@@ -1,4 +1,6 @@
 class Api::UsersController < ApplicationController
+    wrap_parameters include: User.attribute_names + ['password']
+
     def index
         @users = User.all 
         render :index
