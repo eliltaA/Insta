@@ -6,6 +6,7 @@ export const postUser = async userData => {
     method: 'POST',
     body: JSON.stringify(userData)
   })
+  
   const user = await res.json()
   return user
 }
