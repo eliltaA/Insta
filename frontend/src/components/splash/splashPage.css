@@ -1,0 +1,16 @@
+.splash-container {
+    text-align: center;
+    padding: 100px;
+    background-color: #ffffff;
+  }
+  
+  .splash-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  .splash-container p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
