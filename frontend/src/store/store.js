@@ -3,12 +3,14 @@ import entitiesReducer from './entitiesReducer';
 import sessionReducer from './sessionReducer';
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
+import errorsReducer from './errorsReducer';
 
 const dummyReducer = (state = {}, action) => state
 
 const rootReducer = combineReducers({
   entities: entitiesReducer,
   session: sessionReducer,
+  errors: errorsReducer,
   ui: dummyReducer
 })
 

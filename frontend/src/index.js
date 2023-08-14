@@ -19,24 +19,24 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 const currentUser = sessionStorage.getItem('currentUser')
 const csrfToken = sessionStorage.getItem('csrfToken')
 
-let initialState = {}
-const currentUserData = currentUser ? JSON.parse(currentUser) : null;
-console.log(currentUserData)
+// let initialState = {}
+// const currentUserData = currentUser ? JSON.parse(currentUser) : null;
+// console.log(currentUserData)
 
-if (currentUserData) {
-  initialState = {
-    entities: {
-      users: {
-        [currentUserData.id]: currentUserData
-      }
-    },
-    session: {
-      currentUser: currentUserData.id
-    }
-  }
-}
+// if (currentUserData) {
+//   initialState = {
+//     entities: {
+//       users: {
+//         [currentUserData.id]: currentUserData
+//       }
+//     },
+//     session: {
+//       currentUser: currentUserData.id
+//     }
+//   }
+// }
 
-const store = configureStore(initialState)
+const store = configureStore()
 
 const renderApp = () => {
   root.render(
@@ -48,7 +48,8 @@ const renderApp = () => {
   )
 }
 
-if (!currentUser || !csrfToken) {
+
+if (sessionStorage.getItem("currentUser") === null || sessionStorage.getItem("X-CSRF-Token") === null) {
   restoreSession().then(renderApp)
 } else {
   renderApp()

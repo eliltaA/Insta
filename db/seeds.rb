@@ -23,4 +23,13 @@ ActiveRecord::Base.transaction do
         name: "Ella",
         bio: "bla bla"
     )
+
+    user1 = User.create!( 
+        id: 3,
+        username: "demouser",
+        password: 'demopassword',
+        email: 'demo@gmail.com',
+        name: "demo",
+        bio: "demo"
+    )
 end

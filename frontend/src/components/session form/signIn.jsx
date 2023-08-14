@@ -18,6 +18,17 @@ function SignInForm() {
     // Implement signin logic here
   };
 
+  const handleDemoSignIn = (e) => {
+    e.preventDefault();
+    // Replace with your demo user credentials
+    const demoUserCredentials = {
+      username: 'demouser',
+      password: 'demopassword'
+    };
+
+    dispatch(loginUser(demoUserCredentials));
+  };
+
   return (
     <div className="signin-form-container">
       <div className="signin-logo">
@@ -37,6 +48,7 @@ function SignInForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Log In</button>
+        <button onClick={handleDemoSignIn}>Demo Login</button>
       </form>
       <div className="signup-link">
         Don't have an account? <a href="/signup">Sign Up</a>
