@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
      # enable CSRF protection
   include ActionController::RequestForgeryProtection
   protect_from_forgery with: :exception
-
+  helper_method :current_user, :logged_in?
   before_action :snake_case_params, :attach_authenticity_token
 
   def current_user
