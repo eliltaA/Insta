@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './SignUpForm.css'; 
 import { createUser } from '../../store/usersReducer';
+import { useHistory } from 'react-router-dom';
 
 function SignUpForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
-
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
     const userData = {
@@ -19,20 +20,8 @@ function SignUpForm() {
       email,
       password
     };
-    try {
-      await dispatch(createUser(userData));
-      // User created successfully, you can redirect or show a success message if needed
-    } catch (error) {
-      if (error.response && error.response.data) {
-        // Handle validation errors
-        console.log('Validation errors:', error.response.data.errors);
-        // Update your state to show the validation errors to the user
-      } else {
-        // Handle other types of errors (network errors, server errors, etc.)
-        console.error('An error occurred:', error);
-        // Display a generic error message to the user
-      }
-    }
+     dispatch(createUser(userData));
+     history.push('/splash');
   };
 
   return (
@@ -66,8 +55,6 @@ function SignUpForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {errors.username && <div className="error">{errors.username.join(', ')}</div>}
-          {errors.email && <div className="error">{errors.email.join(', ')}</div>}
           <button type="submit">Sign Up</button>
         </form>
         <div className="terms">

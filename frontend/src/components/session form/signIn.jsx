@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../store/usersReducer';
 import './SignInForm.css'; 
+import { useHistory } from 'react-router-dom';
+import SplashPage from '../splash/splashPage';
 
 function SignInForm() {
   const dispatch = useDispatch();
+  const history = useHistory(); 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,6 +18,7 @@ function SignInForm() {
       password
     };
     dispatch(loginUser(credentials));
+    history.push('/splash');
     // Implement signin logic here
   };
 
@@ -27,6 +31,7 @@ function SignInForm() {
     };
 
     dispatch(loginUser(demoUserCredentials));
+    history.push('/splash');
   };
 
   return (
