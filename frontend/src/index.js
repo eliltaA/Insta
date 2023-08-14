@@ -20,7 +20,8 @@ const currentUser = sessionStorage.getItem('currentUser')
 const csrfToken = sessionStorage.getItem('csrfToken')
 
 let initialState = {}
-const currentUserData = JSON.parse(currentUser)
+const currentUserData = currentUser ? JSON.parse(currentUser) : null;
+console.log(currentUserData)
 
 if (currentUserData) {
   initialState = {
@@ -52,3 +53,11 @@ if (!currentUser || !csrfToken) {
 } else {
   renderApp()
 }
+
+window.store = store
+window.postUser = postUser
+window.postSession = postSession
+window.deleteSession = deleteSession
+window.loginUser = loginUser
+window.logoutUser = logoutUser
+window.createUser = createUser

@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../store/usersReducer';
 import './SignInForm.css'; 
 
 function SignInForm() {
-  const [usernameOrEmail, setUsernameOrEmail] = useState('');
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignIn = (e) => {
     e.preventDefault();
+    const credentials = {
+      username,
+      password
+    };
+    dispatch(loginUser(credentials));
     // Implement signin logic here
   };
 
@@ -18,9 +26,9 @@ function SignInForm() {
       <form className="signin-form" onSubmit={handleSignIn}>
         <input
           type="text"
-          placeholder="Username or Email"
-          value={usernameOrEmail}
-          onChange={(e) => setUsernameOrEmail(e.target.value)}
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
