@@ -46,15 +46,27 @@ export const loginUser = credentials =>async dispatch => {
     dispatch(receiveError(res))
   }
 }
-  
-export const logoutUser = () => async dispatch => {
-  const res = await deleteSession();
-  if (res.ok){
-    const data = await res.json();
-    sessionStorage.setItem('currentUser', null)
-      dispatch(removeUser(data.id))
+
+export const logoutUser = userId => async dispatch => {
+  try {
+    const res = await deleteSession();
+    if (res.ok) {
+      sessionStorage.setItem('currentUser', null);
+      dispatch(removeUser(userId));
+    } else {
+      console.log('Logout failed');
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
   }
-} 
+};
+  
+// export const logoutUser = (userId) => async dispatch => {
+//   const res = await deleteSession();
+//     const data = await res.json();
+//     sessionStorage.setItem('currentUser', null)
+//       dispatch(removeUser(userId))
+// } 
   // deleteSession()
   //   .then(() => {
   //     sessionStorage.setItem('currentUser', null)

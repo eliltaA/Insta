@@ -5,16 +5,6 @@ const errorsReducer = (state = {}, action) => {
     console.log(action)
   
     switch(action.type) {
-      // case SET_VALIDATION_ERRORS:
-      //   return {
-      //     ...state,
-      //     validationErrors: action.payload,
-      //   };
-      // case SET_GENERIC_ERROR:
-      //   return {
-      //     ...state,
-      //     genericError: action.payload,
-      //   };
       case RECEIVE_ERROR:
        return action.payload
       default:
@@ -22,4 +12,4 @@ const errorsReducer = (state = {}, action) => {
     }
   }
   
-  export default errorsReducer
+  export default errorsReducer;
