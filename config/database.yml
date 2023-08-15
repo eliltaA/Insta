@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Insta_production
-  username: Insta
-  password: <%= ENV["INSTA_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

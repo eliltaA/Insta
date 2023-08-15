@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   end
   # Defines the root path route ("/")
   # root "articles#index"
+  get '*path', 
+        to: 'static_pages#frontend', 
+        constraints: lambda { |req| !req.xhr? && req.format.html? } 
+
+    root to: 'static_pages#frontend'
 end
