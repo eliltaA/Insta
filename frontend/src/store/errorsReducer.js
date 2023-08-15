@@ -4,7 +4,7 @@ export const getErrors = state => state.errors;
 
 const errorsReducer = (state = {}, action) => {
     const nextState = { ...state }
-    console.log(action)
+    // console.log(action)
   
     switch(action.type) {
       case RECEIVE_ERROR:
