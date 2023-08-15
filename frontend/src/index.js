@@ -6,34 +6,12 @@ import './index.css';
 import App from './App';
 import configureStore from './store/store';
 import * as session from './store/sessionReducer';
-// import { deleteSession, postSession, postUser } from './utils/sessionApiUtil';
-// import { createUser, loginUser, logoutUser } from './store/usersReducer';
-
-const currentUser = sessionStorage.getItem('currentUser')
-const csrfToken = sessionStorage.getItem('csrfToken')
-
-// let initialState = {}
-// const currentUserData = currentUser ? JSON.parse(currentUser) : null;
-// console.log(currentUserData)
-
-// if (currentUserData) {
-//   initialState = {
-//     entities: {
-//       users: {
-//         [currentUserData.id]: currentUserData
-//       }
-//     },
-//     session: {
-//       currentUser: currentUserData.id
-//     }
-//   }
-// }
 
 const store = configureStore()
 
 function Root() {
   return (
-      <Provider store={store}>
+    <Provider store={store}>
           <BrowserRouter>
               <App />
           </BrowserRouter>
@@ -43,7 +21,7 @@ function Root() {
 
 const renderApp = () => {
   ReactDOM.createRoot(document.getElementById('root')).render(
-      <React.StrictMode>
+    <React.StrictMode>
           <Root />
       </React.StrictMode>
   );
@@ -58,14 +36,24 @@ if (sessionStorage.getItem("currentUser") === null || sessionStorage.getItem("X-
 
 if (process.env.NODE_ENV !== "production") {
   window.store = store
- 
+  
 }
-  // const renderApp = () => {
-  //   root.render(
-  //     // <React.StrictMode>
-  //       <Provider store={store}>
-  //         <App />
-  //       </Provider>
-  //     // </React.StrictMode>
-  //   )
-  // }
+
+// const currentUser = sessionStorage.getItem('currentUser')
+// const csrfToken = sessionStorage.getItem('csrfToken')
+// let initialState = {}
+// const currentUserData = currentUser ? JSON.parse(currentUser) : null;
+// console.log(currentUserData)
+
+// if (currentUserData) {
+  //   initialState = {
+    //     entities: {
+      //       users: {
+        //         [currentUserData.id]: currentUserData
+        //       }
+        //     },
+        //     session: {
+          //       currentUser: currentUserData.id
+          //     }
+          //   }
+          // }

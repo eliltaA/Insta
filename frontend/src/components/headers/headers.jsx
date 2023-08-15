@@ -6,11 +6,8 @@ import './header.css'
 import LogoutButton from '../session form/signOut';
 
 function Header() {
-  // const currentUser = sessionStorage.getItem("currentUser") 
   const currentUser = useSelector(state => state.session.user); 
-  // const userIsLoggedIn = true; // Replace with actual state logic
   
-
   return (
     <header>
       <nav>
