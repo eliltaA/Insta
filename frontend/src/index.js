@@ -1,21 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider} from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import configureStore from './store/store';
-import { restoreSession } from './utils/authUtil';
-import { deleteSession, postSession, postUser } from './utils/sessionApiUtil';
-import { createUser, loginUser, logoutUser } from './store/usersReducer';
+import * as session from './store/sessionReducer';
+// import { deleteSession, postSession, postUser } from './utils/sessionApiUtil';
+// import { createUser, loginUser, logoutUser } from './store/usersReducer';
 
-// ReactDOM.createRoot(document.getElementById('root'))
-// .render(
-// <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
 const currentUser = sessionStorage.getItem('currentUser')
 const csrfToken = sessionStorage.getItem('csrfToken')
 
@@ -38,27 +31,41 @@ const csrfToken = sessionStorage.getItem('csrfToken')
 
 const store = configureStore()
 
-const renderApp = () => {
-  root.render(
-    // <React.StrictMode>
+function Root() {
+  return (
       <Provider store={store}>
-        <App prop1={'hello'} prop2={'world'} />
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
       </Provider>
-    // </React.StrictMode>
   )
 }
 
+const renderApp = () => {
+  ReactDOM.createRoot(document.getElementById('root')).render(
+      <React.StrictMode>
+          <Root />
+      </React.StrictMode>
+  );
+}
 
 if (sessionStorage.getItem("currentUser") === null || sessionStorage.getItem("X-CSRF-Token") === null) {
-  restoreSession().then(renderApp)
+  // restoreSession().then(renderApp)
+  store.dispatch(session.restoreSession()).then(renderApp);
 } else {
   renderApp()
 }
 
-window.store = store
-window.postUser = postUser
-window.postSession = postSession
-window.deleteSession = deleteSession
-window.loginUser = loginUser
-window.logoutUser = logoutUser
-window.createUser = createUser
+if (process.env.NODE_ENV !== "production") {
+  window.store = store
+ 
+}
+  // const renderApp = () => {
+  //   root.render(
+  //     // <React.StrictMode>
+  //       <Provider store={store}>
+  //         <App />
+  //       </Provider>
+  //     // </React.StrictMode>
+  //   )
+  // }

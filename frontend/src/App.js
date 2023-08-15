@@ -8,12 +8,12 @@ import SplashPage from './components/splash/splashPage';
 import Header from './components/headers/headers';
 
 function App() {
-  const currentUser = sessionStorage.getItem("currentUser") 
-  // const currentUser = useSelector(state => state.entities.session); // Get currentUser from Redux store
+  // const currentUser = sessionStorage.getItem("currentUser") 
+  const currentUser = useSelector(state => state.session.user); // Get currentUser from Redux store
   return(
     <Router>
       <div>
-      {/* <Header /> */}
+      <Header />
         <Switch>
          
           <Route path="/signup" component={SignUp}/>

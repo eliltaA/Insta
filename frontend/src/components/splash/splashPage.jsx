@@ -5,7 +5,7 @@ import Header from '../headers/headers';
 function SplashPage() {
   return (
     <div className="splash-container">
-       <Header />
+       {/* <Header /> */}
       <h1>Welcome to InstaClone</h1>
       <p>Connect and share with friends!</p>
     </div>

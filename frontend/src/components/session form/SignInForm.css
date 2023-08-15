@@ -27,6 +27,13 @@
     border: 1px solid #e6e6e6;
     border-radius: 3px;
   }
+
+  .signin-form ul {
+    list-style-type: none;
+    padding: 0;
+    color: red;
+    font-size: 14px;
+}
   
   .signin-form button {
     width: 100%;
