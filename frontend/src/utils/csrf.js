@@ -1,3 +1,18 @@
+export const csrfFetch = async (url, options = {}) => {
+  options.method ||= 'GET'
+  options.headers ||= {}
+  
+  if (options.method.toUpperCase() !== 'GET') {
+    // have to skip setting 'Content-Type' header if using formData
+    options.headers['Content-Type'] = 'application/json'
+    options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token')
+  }
+  
+  const res = await fetch(url, options)
+  if (res.status >= 400) throw res;
+  return res
+}
+
 // fetch information about current user from the backend
 // export const restoreSession = async () => {
 //     try {
@@ -14,18 +29,3 @@
 //       console.error('restoreSession is broken')
 //     }
 //   }
-  
-  export const csrfFetch = async (url, options = {}) => {
-    options.method ||= 'GET'
-    options.headers ||= {}
-  
-    if (options.method.toUpperCase() !== 'GET') {
-      // have to skip setting 'Content-Type' header if using formData
-      options.headers['Content-Type'] = 'application/json'
-      options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token')
-    }
-  
-    const res = await fetch(url, options)
-    if (res.status >= 400) throw res;
-    return res
-  }

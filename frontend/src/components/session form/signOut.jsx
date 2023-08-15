@@ -1,16 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/sessionReducer';
-// import { useHistory } from 'react-router-dom';
 
 function LogoutButton() {
-  // const history = useHistory();
   const dispatch = useDispatch();
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    // history.push('/signin');
   };
 
   const logoutButtonStyle = {
