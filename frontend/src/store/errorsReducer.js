@@ -1,4 +1,6 @@
-import { RECEIVE_ERROR } from "./usersReducer"
+import { RECEIVE_ERROR } from "./sessionReducer"
+
+export const getErrors = state => state.errors;
 
 const errorsReducer = (state = {}, action) => {
     const nextState = { ...state }

@@ -1,28 +1,49 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import './SignUpForm.css'; 
-import { createUser } from '../../store/usersReducer';
-import { useHistory } from 'react-router-dom';
+import { signup } from '../../store/sessionReducer';
 
 function SignUpForm() {
-  const history = useHistory();
+  
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.session.user )
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errors, setErrors] = useState([]);
+
+  if (currentUser !== null) return <Redirect to="/" />;
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     const userData = {
       username,
       name,
       email,
-      password
+      password,
+      confirmPassword
     };
-     dispatch(createUser(userData));
-     history.push('/splash');
-  };
+    if (password === confirmPassword) {
+    setErrors([]);
+    return dispatch(signup(userData))
+    .catch(async(res)=> {
+      let data 
+      try{
+        data = await res.json()
+      }catch{
+        data = await res.text();
+      }
+
+      if (data?.errors) setErrors(data.errors)
+      else if (data) setErrors([data])
+      else setErrors([res.statusText]) 
+    })
+  }
+    return setErrors(['Passwords do not match']);
+  }
 
   return (
     <div className="signup-page">
@@ -55,6 +76,15 @@ function SignUpForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <input
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+           />
+           <ul>
+              {errors.map((error) => <li key={error}>{error}</li>)}
+            </ul>
           <button type="submit">Sign Up</button>
         </form>
         <div className="terms">

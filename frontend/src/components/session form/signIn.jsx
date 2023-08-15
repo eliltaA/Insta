@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../store/usersReducer';
+import { login } from '../../store/sessionReducer';
 import './SignInForm.css'; 
-import { useHistory } from 'react-router-dom';
-import SplashPage from '../splash/splashPage';
 
 function SignInForm() {
   const dispatch = useDispatch();
-  const history = useHistory(); 
+  const currentUser =  useSelector(state => state.session.user);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState([]);
+ 
+  if (currentUser !== null) return <Redirect to="/" />;
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -17,21 +20,31 @@ function SignInForm() {
       username,
       password
     };
-    dispatch(loginUser(credentials));
-    history.push('/splash');
-    // Implement signin logic here
+    setErrors([]);
+    return dispatch(login(credentials))
+    .catch(async(res) => {
+      let data;
+      try{
+        data = await res.json();
+      }catch {
+        data = await res.text();
+      }
+      if (data?.errors) setErrors(data.errors);
+      else if (data) setErrors([data])
+      else setErrors([res.statusText])
+    })
+   
   };
 
   const handleDemoSignIn = (e) => {
     e.preventDefault();
-    // Replace with your demo user credentials
     const demoUserCredentials = {
       username: 'demouser',
       password: 'demopassword'
     };
 
-    dispatch(loginUser(demoUserCredentials));
-    history.push('/splash');
+    dispatch(login(demoUserCredentials));
+  
   };
 
   return (
@@ -52,6 +65,9 @@ function SignInForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+         <ul>
+            {errors.map(error => <li key={error}>{error}</li>)}
+          </ul>
         <button type="submit">Log In</button>
         <button onClick={handleDemoSignIn}>Demo Login</button>
       </form>
