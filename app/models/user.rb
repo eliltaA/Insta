@@ -21,11 +21,10 @@ class User < ApplicationRecord
     
     before_validation :ensure_session_token
    
-#   has_many :posts,
-#     primary_key: :id,
-#     foreign_key: :author_id,
-#     class_name: :Post,
-#     dependent: :destroy
+  has_many :posts,
+    foreign_key: :author_id,
+    class_name: :Post,
+    dependent: :destroy
     
 #   has_one_attached :profile_photo, dependent: :destroy  
 #   has_many :comments 
