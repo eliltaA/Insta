@@ -6,6 +6,7 @@ import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSearch, faHome } from '@fortawesome/free-solid-svg-icons'
 import LogoutButton from '../session form/signOut';
+// import CreatePost from '../posts/createPost';
 
 function Header() {
   const currentUser = useSelector(state => state.session.user); 
@@ -22,13 +23,11 @@ function Header() {
         ) : (
           <>
           <div className="header-left">
-          {/* <Link to="/"> */}
             <img
               src="737566.png"
               alt="Instagram Logo"
               className="instagram-icon"
             />
-          {/* </Link> */}
           <div className="search-bar">
           {/* <i className="fas fa-search search-icon"></i> */}
           <FontAwesomeIcon icon={faSearch} />
@@ -37,21 +36,16 @@ function Header() {
         </div>
           {/* <Link to="/dashboard">Dashboard</Link> */}
           <Link to="/">
-          <FontAwesomeIcon icon={faHome} />
-          {/* <img
-              src="image_processing20210616-14620-1hsw5s4.png"
-              alt="Home Logo"
-              className="home-icon"
-            /> */}
-              </Link>
-              <Link to="/add-post">
-                <i className="fas fa-plus"></i>
+            <FontAwesomeIcon icon={faHome} />
+          </Link>
+              <Link to="/addPost">
+                {/* <i className="fas fa-plus"></i> */}
                 <FontAwesomeIcon icon={faPlus} />
               </Link>
+
               <Link to={`/profile/${currentUser.id}`}>
-                
-               
               </Link>
+
               <LogoutButton />
           </>
         )}

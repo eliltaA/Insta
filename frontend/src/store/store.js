@@ -3,9 +3,11 @@ import sessionReducer from './sessionReducer';
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import errorsReducer from './errorsReducer';
+import postsReducer from './postsReducer';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  posts: postsReducer,
   errors: errorsReducer
 })
 
