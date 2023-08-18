@@ -1,8 +1,11 @@
-import { csrfFetch } from "../utils/csrf"
+import { csrfFetch } from "../utils/csrf";
+import { receiveError } from "./sessionReducer";
+import { RECEIVE_USER } from "./usersReducers";
 
-export const RECEIVE_POSTS = "Posts/RECEIVE_POSTS"
-export const RECEIVE_POST = "Posts/RECEIVE_POST"
-export const REMOVE_POST = "Posts/REMOVE_POST"
+export const RECEIVE_POSTS = "posts/RECEIVE_POSTS"
+export const RECEIVE_POST = "posts/RECEIVE_POST"
+export const REMOVE_POST = "posts/REMOVE_POST"
+export const POST_ERROR = "posts/POST_ERROR"
 
 export const receivePosts = posts => ({
     type: RECEIVE_POSTS,
@@ -19,6 +22,10 @@ export const removePost = postId => ({
     postId
 })
 
+export const postError = error => ({
+    type: POST_ERROR,
+    payload: error
+})
 
 export const getPosts = (state) => Object.values(state.posts);
 export const getPost = (state, postId) => state.posts[postId];
@@ -31,6 +38,8 @@ export const fetchPosts = () => async dispatch => {
         
         dispatch(receivePosts(posts))
         return posts
+    }else{
+
     }
   }
   
@@ -44,15 +53,23 @@ export const fetchPosts = () => async dispatch => {
   }
   
   
-export const createPost = postDetails => async dispatch => {
+export const createPost = post => async dispatch => {
+    // debugger
     const res = await csrfFetch('/api/posts', {
         method: 'POST',
-        body: postDetails
+        body: post,
+        // headers:{
+        //     "Content-Type": "multipart/form-data"
+        // }
     })
+    // console.log("HIHIHIHIHIHI")
     if (res.ok) {
         const post = await res.json()
         dispatch(receivePost(post))
         return post
+    }else {
+        // const error = await res.json()
+        // dispatch(receiveError(res.status))
     }
 }
 
@@ -97,6 +114,8 @@ const postsReducer = (state = {}, action) => {
         case REMOVE_POST:
             delete nextState[action.postId];
             return nextState;
+        case RECEIVE_USER: 
+            return action.user.posts
         default:
             return state;
     }
