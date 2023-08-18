@@ -7,6 +7,7 @@ import SignIn from './components/session form/signIn';
 import SplashPage from './components/splash/splashPage';
 import Header from './components/headers/headers';
 import CreatePost from './components/posts/createPost';
+import ProfilePage from './components/profilePage/profilePage';
 
 function App() {
   // const currentUser = sessionStorage.getItem("currentUser") 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" component={SignUp}/>
           <Route path="/signin" component={SignIn}/>
           <Route path="/addPost" component={CreatePost}/>
+          <Route path="/profile/:userId" component={ProfilePage} />
           <Route path="/">
           {currentUser !== null ? <SplashPage /> : <Redirect to="/signin" />}
         </Route>
