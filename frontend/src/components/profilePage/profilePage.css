@@ -65,15 +65,16 @@
     gap: 1rem;
   }
   
-  .post-item {
+  .user-post-item {
+    width: 300px;
     position: relative;
     overflow: hidden;
     border: 1px solid #dbdbdb;
     background-color: #fff;
   }
   
-  .post-image {
-    width: 100%;
+  .user-post-image {
+    width: 250px;
     height: 100%;
     object-fit: cover;
   }

@@ -12,7 +12,7 @@ function CreatePost () {
     const dispatch = useDispatch();
     const currentUser =  useSelector(state => state.session.user);
     const [caption, setCaption] = useState("")
-    const [photo, setPhoto] = useState()
+    const [photo, setPhoto] = useState("")
     const history = useHistory(null);
 
     const handleSubmit = async e => {

@@ -1,23 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser, getUser } from '../../store/usersReducers';
 import "./profilePage.css"
 import { getPosts } from '../../store/postsReducer';
+import PostModal from './postModal';
 
 function ProfilePage() {
   const { userId } = useParams(); 
   const dispatch = useDispatch();
   const user = useSelector(getUser(userId)); 
   const posts =  useSelector(getPosts);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
 
   useEffect(() => {
     dispatch(fetchUser(userId)); 
   }, [dispatch, userId]);
 
   if (!user) {
-    return <div>Loading...</div>; // Show loading message while fetching user
+    return <div>Loading...</div>; 
   }
+
+  // const onClick
 
   return (
     <div className="profile-container">
@@ -38,16 +45,22 @@ function ProfilePage() {
         {/* Implement tabs for different content sections */}
       </div>
       <div className="profile-posts">
-      {posts.map(post => (
-        <div className="post-item" key={post.id}>
-          <img className="post-image" src={post.photoUrl} alt="Post" />
-          {/* <h3 className="post-caption">{post.caption}</h3> */}
+      {Object.values(posts).map(post => (
+        <div className="user-post-item" key={post.id} onClick={(e)=>{
+          setSelectedPost(post)
+         setIsModalOpen(true)}}>
+          <img className="user-post-image" src={post.photoUrl} alt="Post" />
         </div>
         ))}
       </div>
+      {isModalOpen && (
+      <PostModal
+        post={selectedPost}
+        onClose={() => setIsModalOpen(false)}
+      />
+    )}
       </div>
       );
     }
-    // {/* Display user's posts using grid layout */}
-
-export default ProfilePage;
+    
+    export default ProfilePage;

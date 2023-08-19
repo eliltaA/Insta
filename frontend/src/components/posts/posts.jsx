@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -14,10 +15,19 @@ function Posts () {
     dispatch(fetchPosts())
   },[dispatch])
 
+  // const onClick = () => {
+
+  // }
+
   return (
     <div className="posts-container">
-      {posts.map(post => (
+      {Object.values(posts).map(post => (
         <div className="post-item" key={post.id}>
+          <div className="user-info">
+            {/* <img className="user-avatar" src={post.author.avatarUrl} alt={`${post.author.username}'s Avatar`} /> */}
+            <Link to={`/profile/${post.authorId}`}>{post.username}</Link>
+            {/* <p className="username">{post.username}</p> */}
+          </div>
           <img className="post-image" src={post.photoUrl} alt="Post" />
           <h3 className="post-caption">{post.caption}</h3>
           <PostItem post={post} />
@@ -25,30 +35,6 @@ function Posts () {
       ))}
     </div>
   );
-
-//   return (
-//     <div className="posts-container">
-//       {posts.map(post => (
-//         <div className="post-item" key={post.id}>
-//           <h3 className="post-caption">{post.caption}</h3>
-//           <img className="post-image" src={post.photoUrl} alt="Post" />
-//           <PostItem post={post} />
-//         </div>
-//       ))}
-//     </div>
-//   );
-
-//   return (
-//     <>
-//     {posts.map(post =>( 
-//          <div key={post.id}>
-//         <h3>{post.caption}</h3>
-//         <img src={post.photoUrl}/>
-//         <PostItem post={post}/>
-//         </div>
-//     ))}
-//     </>
-//   )
 }
 
 export default Posts;
