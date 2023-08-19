@@ -24,7 +24,7 @@ function Posts () {
       {Object.values(posts).map(post => (
         <div className="post-item" key={post.id}>
           <div className="user-info">
-            {/* <img className="user-avatar" src={post.author.avatarUrl} alt={`${post.author.username}'s Avatar`} /> */}
+            {/* <img className="user-avatar" src={737566.png} alt={`${post.username}'s Avatar`} /> */}
             <Link to={`/profile/${post.authorId}`}>{post.username}</Link>
             {/* <p className="username">{post.username}</p> */}
           </div>
