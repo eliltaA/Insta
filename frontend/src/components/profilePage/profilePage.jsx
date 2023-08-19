@@ -35,6 +35,7 @@ function ProfilePage() {
         <div className="profile-info">
           <h2>{user.username}</h2>
           <div className="profile-stats">
+          <p className="post-count">Posts: {Object.values(posts).length}</p>
             {/* Display follower/following counts and other user info */}
           </div>
           <p className="name">{user.name}</p>
