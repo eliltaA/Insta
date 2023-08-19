@@ -27,7 +27,7 @@ export const postError = error => ({
     payload: error
 })
 
-export const getPosts = (state) => Object.values(state.posts);
+export const getPosts = (state) => state.posts;
 export const getPost = (state, postId) => state.posts[postId];
 
 
@@ -74,13 +74,14 @@ export const createPost = post => async dispatch => {
 }
 
 export const updatePost = postDetails => async dispatch => {
+    // debugger
     const res = await csrfFetch(`/api/posts/${postDetails.id}`, {
-        method: 'PUT',
-        body: postDetails
+        method: 'PATCH',
+        body: JSON.stringify(postDetails)
     })
     if (res.ok) {
         const post = await res.json()
-        dispatch(receivePost({post}))
+        dispatch(receivePost(post))
         return post
     }else{
         // errors
