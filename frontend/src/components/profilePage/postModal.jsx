@@ -1,18 +1,28 @@
 import React from 'react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import './postModal.css'; // Import your styling if needed
 import { deletePost, updatePost } from '../../store/postsReducer';
 import { useSelector } from 'react-redux';
 import CreateComment from '../comments/createComments';
+import Comment from '../comments/comment';
+import { fetchComments, getComments } from '../../store/commentsReducer';
+import EditDeleteComment from '../comments/editDeleteComment';
 
 function PostModal({ post, onClose }) {
     const modalRef = useRef(null);
     const dispatch = useDispatch();
+    const comments = useSelector(getComments);
+    // const postId = post.id
     const currentUser =  useSelector(state => state.session.user);
     const [editedCaption, setEditedCaption] = useState(post.caption)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
+
+    useEffect(() => {
+      dispatch(fetchComments())
+    },[dispatch])
+  
 
     const closeModal = e => {
         if (modalRef.current === e.target) {
@@ -43,8 +53,16 @@ function PostModal({ post, onClose }) {
           <div className="post-modal-container" onClick={closeModal} ref={modalRef}>
             <div className="post-modal-content">
               <img className="post-modal-image" src={post.photoUrl} alt="Post" />
+              <div className="comments-section">
+              {Object.values(comments).filter(comment => comment.postId === post.id).map(comment => (
+                <>
+                  <Comment key={comment.id} comment={comment} />
+                  <EditDeleteComment key={4} comment={comment}/>
+                </>
+                ))}
+              </div>
               <div className='comment'>
-              <CreateComment postId={post.id}/>
+                <CreateComment postId={post.id}/>
               </div>
               <div className="post-modal-details">
                 {post.authorId !== currentUser.id ? null : (

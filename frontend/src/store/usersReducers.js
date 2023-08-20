@@ -20,7 +20,7 @@ export const removeUser = (userId) => ({
     userId
 })
 
-export const getUsers = (state) => Object.values(state.users);
+export const getUsers = (state) => state.users;
 export const getUser = (userId) => (state) => state.users[userId];
 
 
