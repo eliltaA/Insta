@@ -6,7 +6,7 @@ require "open-uri"
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-    # Comment.destroy_all
+    Comment.destroy_all
     # Like.destroy_all
     Post.destroy_all
     User.destroy_all
@@ -14,7 +14,7 @@ require "open-uri"
     ActiveRecord::Base.connection.reset_pk_sequence!('users')
     ActiveRecord::Base.connection.reset_pk_sequence!('post')
     # ActiveRecord::Base.connection.reset_pk_sequence!('like')
-    # ActiveRecord::Base.connection.reset_pk_sequence!('comment')
+    ActiveRecord::Base.connection.reset_pk_sequence!('comment')
     user1 = User.create!( 
         username: "ella_123",
         password: '444888',
@@ -246,42 +246,29 @@ require "open-uri"
     )
     post28.photo.attach(io: URI.open("https://insta-hosting.s3.us-west-2.amazonaws.com/v10.jpeg"),filename: "v10.jpeg")
 
-    # post29= Post.create!(
-    #     caption: "bla",
-    #     author_id: user3.id
-    # )
-    # post29.photo.attach(io: URI.open(""),filename: "")
-    
-    # post30= Post.create!(
-    #     caption: "bla",
-    #     author_id: user3.id
-    # )
-    # post30.photo.attach(io: URI.open(""),filename: "")
+    # comment
+    comment1 = Comment.create!(
+        comment_body: 'lovely',
+        author_id: user4.id,
+        post_id: post8.id
+    )
 
-    # post31= Post.create!(
-    #     caption: "bla",
-    #     author_id: user3.id
-    # )
-    # post31.photo.attach(io: URI.open(""),filename: "")
+    comment2 = Comment.create!(
+        comment_body: 'beautifull view!!',
+        author_id: user2.id,
+        post_id: post1.id
+    )
 
+    comment3 = Comment.create!(
+        comment_body: 'pretty!!',
+        author_id: user3.id,
+        post_id: post2.id
+    )
 
-    # post32= Post.create!(
-    #     caption: "bla",
-    #     author_id: user3.id
-    # )
-    # post32.photo.attach(io: URI.open(""),filename: "")
+    comment4 = Comment.create!(
+        comment_body: 'mesmerizing!',
+        author_id: user7.id,
+        post_id: post21.id
+    )
 
-
-    # post33= Post.create!(
-    #     caption: "bla",
-    #     author_id: user3.id
-    # )
-    # post33.photo.attach(io: URI.open(""),filename: "")
-
-
-    # post34= Post.create!(
-    #     caption: "bla",
-    #     author_id: user3.id
-    # )
-    # post34.photo.attach(io: URI.open(""),filename: "")
     

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import './postModal.css'; // Import your styling if needed
 import { deletePost, updatePost } from '../../store/postsReducer';
 import { useSelector } from 'react-redux';
+import CreateComment from '../comments/createComments';
 
 function PostModal({ post, onClose }) {
     const modalRef = useRef(null);
@@ -42,6 +43,9 @@ function PostModal({ post, onClose }) {
           <div className="post-modal-container" onClick={closeModal} ref={modalRef}>
             <div className="post-modal-content">
               <img className="post-modal-image" src={post.photoUrl} alt="Post" />
+              <div className='comment'>
+              <CreateComment postId={post.id}/>
+              </div>
               <div className="post-modal-details">
                 {post.authorId !== currentUser.id ? null : (
                   <div className="post-modal-options">

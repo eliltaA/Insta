@@ -5,11 +5,13 @@ import logger from 'redux-logger'
 import errorsReducer from './errorsReducer';
 import postsReducer from './postsReducer';
 import usersReducer from './usersReducers';
+import commentsReducer from './commentsReducer';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   users: usersReducer,
   posts: postsReducer,
+  comments: commentsReducer,
   errors: errorsReducer
 })
 
