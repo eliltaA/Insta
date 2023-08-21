@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import { getUser } from '../../store/usersReducers';
 import { fetchUsers, getUsers } from '../../store/usersReducers';
 // import './Comment.css'; 
 

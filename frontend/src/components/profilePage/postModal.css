@@ -40,6 +40,24 @@
     font-size: 16px;
   }
 
+  .post-modal-caption a{
+    font-size: 15px;
+    font-weight: 500;
+    /* color: #010101; */
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .comment-author a{
+    font-size: 15px;
+    font-weight: 500;
+    /* color: #010101; */
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+
   .comments-section {
     display: flex;
     flex-direction: column;

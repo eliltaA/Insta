@@ -20,6 +20,7 @@ function CreatePost () {
         const postDetails = new FormData();
             postDetails.append('post[caption]', caption);
             postDetails.append('post[photo]', photo);
+            // postDetails.append('post[author_id]', currentUser.id);
             const newPost = await dispatch(createPost(postDetails));
             setCaption('');
             setPhoto('');
