@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
 
-    before_action :require_logged_in, only: [:destroy, :update]
+    # before_action :require_logged_in, only: [:destroy, :update]
 
     def index 
         @posts = Post.all
