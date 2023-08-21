@@ -47,10 +47,12 @@ function EditDeleteComment ({comment}){
                         <span className="comment-text">{comment.comment_body}</span>
                     )}
                     {comment.authorId === currentUser.id && !isEditing && (
-                        <>
-                            <button onClick={handleEdit}>Edit</button>
-                            <button onClick={handleDelete}>Delete</button>
-                        </>
+                        <div className='comment-actions'>
+                         <a href="#" onClick={handleEdit}>Edit</a>
+                         <a href="#" onClick={handleDelete}>Delete</a>
+                            {/* <button onClick={handleEdit}>Edit</button>
+                            <button onClick={handleDelete}>Delete</button> */}
+                        </div>
                     )}
                     {isEditing && (
                         <button onClick={handleSave}>Save</button>
@@ -60,4 +62,4 @@ function EditDeleteComment ({comment}){
         );
     
 }
-export default EditDeleteComment
+export default EditDeleteComment 

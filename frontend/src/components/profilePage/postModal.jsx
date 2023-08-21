@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRef, useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './postModal.css'; // Import your styling if needed
 import { deletePost, updatePost } from '../../store/postsReducer';
@@ -8,6 +9,8 @@ import CreateComment from '../comments/createComments';
 import Comment from '../comments/comment';
 import { fetchComments, getComments } from '../../store/commentsReducer';
 import EditDeleteComment from '../comments/editDeleteComment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 function PostModal({ post, onClose }) {
     const modalRef = useRef(null);
@@ -18,6 +21,7 @@ function PostModal({ post, onClose }) {
     const [editedCaption, setEditedCaption] = useState(post.caption)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
+    const [optionsVisible, setOptionsVisible] = useState(false);
 
     useEffect(() => {
       dispatch(fetchComments())
@@ -55,30 +59,42 @@ function PostModal({ post, onClose }) {
               <img className="post-modal-image" src={post.photoUrl} alt="Post" />
               <div className='post-cont'>
               <div className="post-modal-caption">
-                <div className="caption-username">{post.username}</div>
+                {/* <div className="caption-username">{post.username}</div> */}
+                <Link to={`/profile/${post.authorId}`}>{post.username}</Link>
+                {post.authorId === currentUser.id && (
+              <div className="ellipsis-icon" onClick={() => setOptionsVisible(!optionsVisible)}>
+                <FontAwesomeIcon icon={faEllipsisH} size="lg" />
+                {optionsVisible && (
+                  <div className="options">
+                    <button className="delete-button" onClick={() => setDeleteModalOpen(true)}>Delete</button>
+                    <button className="edit-button" onClick={() => setEditModalOpen(true)}>Edit</button>
+                  </div>
+                )}
+              </div>
+            )}
                 {post.authorId === currentUser.id ? (
                   <>
                     <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
-                    {/* Delete Confirmation Modal */}
-                    {deleteModalOpen && (
-                      <div className="confirmation-modal">
-                        <p>Are you sure you want to delete this post?</p>
-                        <button onClick={handleDelete}>Confirm Delete</button>
-                        <button onClick={() => setDeleteModalOpen(false)}>Cancel</button>
-                      </div>
-                    )}
-                
-                    {/* Edit Confirmation Modal */}
-                    {editModalOpen && (
-                      <div className="confirmation-modal">
-                        <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
-                        <button className="edit-button" onClick={handleEdit}>Confirm Edit</button>
-                        <button onClick={() => setEditModalOpen(false)}>Cancel</button>
-                      </div>
-                    )}
                   </>
                 ) : (
                   <span className="caption-text">{post.caption}</span>
+                  )}
+                  {/* Delete Confirmation Modal */}
+                  {deleteModalOpen && (
+                    <div className="confirmation-modal">
+                      <p>Are you sure you want to delete this post?</p>
+                      <button onClick={handleDelete}>Confirm Delete</button>
+                      <button onClick={() => setDeleteModalOpen(false)}>Cancel</button>
+                    </div>
+                  )}
+              
+                  {/* Edit Confirmation Modal */}
+                  {editModalOpen && (
+                    <div className="confirmation-modal">
+                      <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
+                      <button className="edit-button" onClick={handleEdit}>Confirm Edit</button>
+                      <button onClick={() => setEditModalOpen(false)}>Cancel</button>
+                    </div>
                   )}
               </div>
               <div className="comments-section">
@@ -92,14 +108,6 @@ function PostModal({ post, onClose }) {
               <div className='create-comment'>
                 <CreateComment postId={post.id}/>
               </div>
-              <div className="post-modal-details">
-                {post.authorId !== currentUser.id ? null : (
-                  <div className="post-modal-options">
-                    <button className="delete-button" onClick={() => setDeleteModalOpen(true)}>Delete</button>
-                    <button className="edit-button" onClick={() => setEditModalOpen(true)}>Edit</button>
-                  </div>
-                )}
-              </div>
               </div>
             </div>
             
@@ -108,6 +116,15 @@ function PostModal({ post, onClose }) {
       }
       
       export default PostModal;
-    
-
-
+      
+      
+      
+      
+      {/* <div className="post-modal-details">
+        {post.authorId !== currentUser.id ? null : (
+          <div className="post-modal-options">
+            <button className="delete-button" onClick={() => setDeleteModalOpen(true)}>Delete</button>
+            <button className="edit-button" onClick={() => setEditModalOpen(true)}>Edit</button>
+          </div>
+        )}
+      </div> */}
