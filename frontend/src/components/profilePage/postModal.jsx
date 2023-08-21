@@ -47,21 +47,49 @@ function PostModal({ post, onClose }) {
         const edited = await dispatch(updatePost(newPost));
         setEditedCaption(post.caption)
         if (edited) onClose();
-    };
+      };
       
-        return (
-          <div className="post-modal-container" onClick={closeModal} ref={modalRef}>
+      return (
+        <div className="post-modal-container" onClick={closeModal} ref={modalRef}>
             <div className="post-modal-content">
               <img className="post-modal-image" src={post.photoUrl} alt="Post" />
+              <div className='post-cont'>
+              <div className="post-modal-caption">
+                <div className="caption-username">{post.username}</div>
+                {post.authorId === currentUser.id ? (
+                  <>
+                    <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
+                    {/* Delete Confirmation Modal */}
+                    {deleteModalOpen && (
+                      <div className="confirmation-modal">
+                        <p>Are you sure you want to delete this post?</p>
+                        <button onClick={handleDelete}>Confirm Delete</button>
+                        <button onClick={() => setDeleteModalOpen(false)}>Cancel</button>
+                      </div>
+                    )}
+                
+                    {/* Edit Confirmation Modal */}
+                    {editModalOpen && (
+                      <div className="confirmation-modal">
+                        <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
+                        <button className="edit-button" onClick={handleEdit}>Confirm Edit</button>
+                        <button onClick={() => setEditModalOpen(false)}>Cancel</button>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <span className="caption-text">{post.caption}</span>
+                  )}
+              </div>
               <div className="comments-section">
               {Object.values(comments).filter(comment => comment.postId === post.id).map(comment => (
                 <>
                   <Comment key={comment.id} comment={comment} />
-                  <EditDeleteComment key={4} comment={comment}/>
+                  <EditDeleteComment key={comment.id} comment={comment}/>
                 </>
                 ))}
               </div>
-              <div className='comment'>
+              <div className='create-comment'>
                 <CreateComment postId={post.id}/>
               </div>
               <div className="post-modal-details">
@@ -71,36 +99,10 @@ function PostModal({ post, onClose }) {
                     <button className="edit-button" onClick={() => setEditModalOpen(true)}>Edit</button>
                   </div>
                 )}
-                <div className="post-modal-caption">
-                  <span className="caption-username">{post.username}</span>
-                  {post.authorId === currentUser.id ? (
-                    <>
-                      <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
-                    </>
-                  ) : (
-                    <span className="caption-text">{post.caption}</span>
-                  )}
-                </div>
+              </div>
               </div>
             </div>
             
-            {/* Delete Confirmation Modal */}
-            {deleteModalOpen && (
-              <div className="confirmation-modal">
-                <p>Are you sure you want to delete this post?</p>
-                <button onClick={handleDelete}>Confirm Delete</button>
-                <button onClick={() => setDeleteModalOpen(false)}>Cancel</button>
-              </div>
-            )}
-      
-            {/* Edit Confirmation Modal */}
-            {editModalOpen && (
-              <div className="confirmation-modal">
-                <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
-                <button className="edit-button" onClick={handleEdit}>Confirm Edit</button>
-                <button onClick={() => setEditModalOpen(false)}>Cancel</button>
-              </div>
-            )}
           </div>
         );
       }
