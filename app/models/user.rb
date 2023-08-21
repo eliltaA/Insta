@@ -21,20 +21,20 @@ class User < ApplicationRecord
     
     before_validation :ensure_session_token
    
-#   has_many :posts,
-#     primary_key: :id,
-#     foreign_key: :author_id,
-#     class_name: :Post,
-#     dependent: :destroy
+  has_many :posts,
+    foreign_key: :author_id,
+    class_name: :Post,
+    dependent: :destroy
     
 #   has_one_attached :profile_photo, dependent: :destroy  
-#   has_many :comments 
+  has_many :comments,
+    foreign_key: :author_id,
+    class_name: :Comment,
+    dependent: :destroy  
 #   has_many :likes
-
-
 #   has_many :followers
 #   has_many :followees
-#   has_many :likes
+
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
