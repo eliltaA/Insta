@@ -17,7 +17,7 @@
     /* align-items: flex-start; */
     flex-direction: row;
     position: relative;
-    /* gap: 12px; */
+    gap: 12px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -50,6 +50,9 @@
   }
 
   .comment-author a{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     font-size: 15px;
     font-weight: 500;
     /* color: #010101; */
@@ -62,8 +65,8 @@
     display: flex;
     flex-direction: column;
     padding: 16px;
-    max-height: 300px;
-    overflow-y: auto;
+    /* max-height: 300px;
+    overflow-y: auto; */
   }
 
   .comment-text {
