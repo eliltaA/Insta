@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :session, only: [:show, :create, :destroy]
     resources :posts, only: [:create, :show, :destroy, :index, :update]
     resources :comments, only: [:create, :index, :show, :update, :destroy]
+    resources :followings, only: [:create, :show, :index, :destroy]
   end
   # Defines the root path route ("/")
   # root "articles#index"

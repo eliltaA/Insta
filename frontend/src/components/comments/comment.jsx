@@ -30,7 +30,7 @@ function Comment({ comment }) {
                 // console.log(user)
                 // console.log(users[userId])
                 // console.log(user.username)
-             <Link key={user.id} to={`/profile/${userId}`}>{user.id === userId ? user.username : null}</Link>
+            <Link key={user.id} to={`/profile/${userId}`}>{user.id === userId ? user.username : null}</Link>
         ))}
         </div>
         <span className="comment-text">{comment.commentBody}</span>

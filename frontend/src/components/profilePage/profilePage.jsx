@@ -5,11 +5,15 @@ import { fetchUser, getUser } from '../../store/usersReducers';
 import "./profilePage.css"
 import { getPosts } from '../../store/postsReducer';
 import PostModal from './postModal';
+import FollowButton from '../followings/followButton';
+import Followings from '../followings/followings';
+import Followers from '../followings/followers';
 
 function ProfilePage() {
   const { userId } = useParams(); 
   const dispatch = useDispatch();
   const user = useSelector(getUser(userId)); 
+  const currentUser =  useSelector(state => state.session.user);
   const posts =  useSelector(getPosts);
   const [selectedPost, setSelectedPost] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +28,8 @@ function ProfilePage() {
     return <div>Loading...</div>; 
   }
 
-  // const onClick
+  // console.log(currentUser)
+  // console.log(user)
 
   return (
     <div className="profile-container">
@@ -36,6 +41,9 @@ function ProfilePage() {
           <h2>{user.username}</h2>
           <div className="profile-stats">
           <p className="post-count">Posts: {Object.values(posts).length}</p>
+          {user !== currentUser ? <FollowButton followeeUser={user} /> : null}
+          <Followers user={user}/>
+          <Followings user={user}/>
             {/* Display follower/following counts and other user info */}
           </div>
           <p className="name">{user.name}</p>

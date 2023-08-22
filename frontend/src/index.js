@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store/store';
 import * as session from './store/sessionReducer';
+import { deleteFollowing, removeFollowing } from './store/followingReducer';
 
 const store = configureStore()
 
@@ -36,7 +37,8 @@ if (sessionStorage.getItem("currentUser") === null || sessionStorage.getItem("X-
 
 if (process.env.NODE_ENV !== "production") {
   window.store = store
-  
+  window.removeFollowing = removeFollowing
+  window.deletFollowing = deleteFollowing
 }
 
 // const currentUser = sessionStorage.getItem('currentUser')
