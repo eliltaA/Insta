@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRef, useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from 'react-redux';
 import './postModal.css'; // Import your styling if needed
 import { deletePost, updatePost } from '../../store/postsReducer';
@@ -37,7 +37,7 @@ function PostModal({ post, onClose }) {
     const handleDelete = async e => {
         e.preventDefault();
         const deleted = await dispatch(deletePost(post.id));
-         if (deleted) setDeleteModalOpen(false) 
+        if (deleted) setDeleteModalOpen(false) 
     };
 
     const handleEdit = async e => {
@@ -61,7 +61,8 @@ function PostModal({ post, onClose }) {
               <div className="post-modal-caption">
                 {/* <div className="caption-username">{post.username}</div> */}
                 <Link to={`/profile/${post.authorId}`}>{post.username}</Link>
-                {post.authorId === currentUser.id && (
+
+              {post.authorId === currentUser.id && (
               <div className="ellipsis-icon" onClick={() => setOptionsVisible(!optionsVisible)}>
                 <FontAwesomeIcon icon={faEllipsisH} size="lg" />
                 {optionsVisible && (
@@ -79,6 +80,7 @@ function PostModal({ post, onClose }) {
                 ) : (
                   <span className="caption-text">{post.caption}</span>
                   )}
+
                   {/* Delete Confirmation Modal */}
                   {deleteModalOpen && (
                     <div className="confirmation-modal">
