@@ -1,0 +1,17 @@
+/* likes.css */
+
+.likes-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #262626; 
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    text-decoration: none; 
+}
+
+.likes-button:hover {
+    text-decoration: none; /* Remove underline on hover */
+}

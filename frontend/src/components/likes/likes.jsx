@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLikes } from "../../store/likesReducer";
+import "./likes.css";
 
 function Likes({ type, typeId }) {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function Likes({ type, typeId }) {
 
     return (
         <div className="likes">
-        <button onClick={openModal}>{filteredLikes.length} Likes</button>
+        <button className="likes-button" onClick={openModal}>{filteredLikes.length} Likes</button>
         {isModalOpen && (
         <div className="modal-overlay">
             <div className="modal-content">

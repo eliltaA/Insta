@@ -1,0 +1,33 @@
+/* likeButton.css */
+
+.like-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.like-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    fill: #c1bebe;
+}
+
+.liked-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.liked-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    fill: #ed4956;
+}
