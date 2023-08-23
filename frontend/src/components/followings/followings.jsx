@@ -2,9 +2,12 @@ import { useDispatch,  useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchFollowings, getFollowings } from "../../store/followingReducer";
+import FollowButton from "./followButton";
 import './followings.css'
+import { getUser } from "../../store/usersReducers";
 
 function Followings ({user}){
+  console.log(user)
     const dispatch = useDispatch();
     const followings = useSelector(getFollowings);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,9 +42,11 @@ function Followings ({user}){
             <ul>
               {Object.values(followings).map((following) => {
                 if (user.id === following.followerId) {
+                  const followeeUser = {id: following.followeeId, username: following.followee}
                   return (
                     <li key={following.id}>
                       <Link to={`/profile/${following.followeeId}`} onClick={closeModal}>{following.followee}</Link>
+                      <FollowButton followeeUser={followeeUser} />
                     </li>
                   );
                 }

@@ -1,13 +1,14 @@
 import { useDispatch,  useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchFollowings, getFollowings } from "../../store/followingReducer";
+import { fetchFollowings, getFollowings, deleteFollowing } from "../../store/followingReducer";
 import './followings.css'
 
 function Followers ({user}){
     const dispatch = useDispatch();
     const followings = useSelector(getFollowings);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const currentUser =  useSelector(state => state.session.user);
 
     const openModal = () => {
       dispatch(fetchFollowings()); // Fetch followings data when the modal opens
@@ -16,6 +17,11 @@ function Followers ({user}){
 
     const closeModal = () => {
     setIsModalOpen(false);
+    };
+
+    const handleRemoveFollower = (followingId) => {
+      dispatch(deleteFollowing(followingId)); // Dispatch the action to remove the follower
+      // Optionally, you can also update your local state to re-render the follower list.
     };
 
     let followersCount = 0
@@ -42,6 +48,8 @@ function Followers ({user}){
                   return( 
                   <li key={following.id}>
                     <Link to={`/profile/${following.followerId}`} onClick={closeModal}>{following.follower}</Link>
+                    {user.id === currentUser.id && (
+                    <button onClick={() => handleRemoveFollower(following.id)}>Remove</button>)}
                   </li>
                   );
                 }

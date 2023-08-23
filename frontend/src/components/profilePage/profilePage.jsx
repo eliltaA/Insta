@@ -57,7 +57,7 @@ function ProfilePage() {
       {Object.values(posts).map(post => (
         <div className="user-post-item" key={post.id} onClick={(e)=>{
           setSelectedPost(post)
-         setIsModalOpen(true)}}>
+          setIsModalOpen(true)}}>
           <img className="user-post-image" src={post.photoUrl} alt="Post" />
         </div>
         ))}

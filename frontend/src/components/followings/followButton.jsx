@@ -6,7 +6,7 @@ function FollowButton ({ followeeUser }) {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
     const followings = useSelector(getFollowings)
-   
+    
     useEffect(() => {
         dispatch(fetchFollowings())
     }, [dispatch]);
