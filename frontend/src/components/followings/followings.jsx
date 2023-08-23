@@ -7,13 +7,13 @@ import './followings.css'
 import { getUser } from "../../store/usersReducers";
 
 function Followings ({user}){
-  console.log(user)
+  // console.log(user)
     const dispatch = useDispatch();
     const followings = useSelector(getFollowings);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
-      dispatch(fetchFollowings()); // Fetch followings data when the modal opens
+      dispatch(fetchFollowings());
       setIsModalOpen(true);
     };
   

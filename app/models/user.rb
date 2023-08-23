@@ -20,9 +20,13 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6 }, allow_nil: true
     
     before_validation :ensure_session_token
+
     #   has_one_attached :profile_photo, dependent: :destroy  
-    #   has_many :likes
-    
+    has_many :likes,
+      foreign_key: :user_id,
+      class_name: :Like,
+      dependent: :destroy
+
   has_many :posts,
     foreign_key: :author_id,
     class_name: :Post,

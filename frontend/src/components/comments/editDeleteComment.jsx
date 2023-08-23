@@ -48,8 +48,8 @@ function EditDeleteComment ({comment}){
                     )}
                     {comment.authorId === currentUser.id && !isEditing && (
                         <div className='comment-actions'>
-                         <a href="#" onClick={handleEdit}>Edit</a>
-                         <a href="#" onClick={handleDelete}>Delete</a>
+                        <a href="#" onClick={handleEdit}>Edit</a>
+                        <a href="#" onClick={handleDelete}>Delete</a>
                             {/* <button onClick={handleEdit}>Edit</button>
                             <button onClick={handleDelete}>Delete</button> */}
                         </div>

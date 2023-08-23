@@ -7,6 +7,7 @@ import postsReducer from './postsReducer';
 import usersReducer from './usersReducers';
 import commentsReducer from './commentsReducer';
 import followingsReducer from './followingReducer';
+import likesReducer from './likesReducer';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   posts: postsReducer,
   comments: commentsReducer,
   followings: followingsReducer,
+  likes: likesReducer,
   errors: errorsReducer
 })
 
