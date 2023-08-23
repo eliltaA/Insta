@@ -42,9 +42,9 @@ function ProfilePage() {
           <div className="profile-stats">
           <p className="post-count">Posts: {Object.values(posts).length}</p>
           {user !== currentUser ? <FollowButton followeeUser={user} /> : null}
+          {/* {user !== currentUser && ( <FollowButton followeeUser={user} /> )} */}
           <Followers user={user}/>
           <Followings user={user}/>
-            {/* Display follower/following counts and other user info */}
           </div>
           <p className="name">{user.name}</p>
           <p className="name">{user.bio}</p>
