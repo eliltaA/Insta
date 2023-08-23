@@ -1,6 +1,13 @@
 class Api::UsersController < ApplicationController
     wrap_parameters include: User.attribute_names + ['password']
 
+    # def search
+    #   query = params[:q]
+    #   users = User.where("username ILIKE ?", "%#{query}%")
+    
+    #   render json: users
+    # end
+
     def index
         @users = User.all 
         render :index

@@ -21,7 +21,9 @@ class User < ApplicationRecord
     
     before_validation :ensure_session_token
 
-    #   has_one_attached :profile_photo, dependent: :destroy  
+    has_one_attached :profile_photo,
+      dependent: :destroy 
+
     has_many :likes,
       foreign_key: :user_id,
       class_name: :Like,
