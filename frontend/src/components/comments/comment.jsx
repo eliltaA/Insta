@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { fetchUsers, getUsers } from '../../store/usersReducers';
+import Likes from '../likes/likes';
+import CreateLikeButton from '../likes/createLike';
 // import './Comment.css'; 
 
 function Comment({ comment }) {
@@ -34,6 +36,8 @@ function Comment({ comment }) {
         ))}
         </div>
         <span className="comment-text">{comment.commentBody}</span>
+        <Likes type="Comment" typeId={comment.id} />
+        <CreateLikeButton likeableType="Comment" likeableId={comment.id} />
       </div>
     </div>
   );

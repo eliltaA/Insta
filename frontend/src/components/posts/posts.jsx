@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { fetchPosts, getPosts } from '../../store/postsReducer';
 import PostModal from '../profilePage/postModal';
+import Likes from '../likes/likes';
+import CreateLikeButton from '../likes/createLike';
 import "./posts.css"
+
 function Posts () {
   const dispatch = useDispatch();
   const posts =  useSelector(getPosts);
@@ -26,6 +29,8 @@ function Posts () {
           </div>
           <img className="post-image" src={post.photoUrl} alt="Post" />
           <h3 className="post-caption">{post.caption}</h3>
+          <Likes type="Post" typeId={post.id} />
+          <CreateLikeButton likeableType="Post" likeableId={post.id} />
           </div>
       ))}
       {selectedPost && (
