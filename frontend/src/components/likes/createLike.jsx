@@ -2,6 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { createLike, deleteLike, getLikes } from "../../store/likesReducer";
 import './likeButton.css'
+
 function CreateLikeButton({ likeableType, likeableId }) {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
@@ -27,6 +28,7 @@ function CreateLikeButton({ likeableType, likeableId }) {
                 likeable_type: likeableType, 
                 likeable_id: likeableId
             }
+            console.log(like)
         dispatch(createLike(like));
         }
     };
