@@ -81,8 +81,8 @@ function SignUpForm() {
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-           />
-           <ul>
+          />
+          <ul>
               {errors.map((error) => <li key={error}>{error}</li>)}
             </ul>
           <button type="submit">Sign Up</button>
@@ -95,7 +95,7 @@ function SignUpForm() {
           Have an account? <a href="/signin">Sign In</a>
         </div>
       </div>
-       <div className="phone-image">
+      <div className="phone-image">
       {/* <img src={PhoneImage} alt="Phone" /> */}
         <p>Get the app.</p>
       <div className="app-store-icons">
