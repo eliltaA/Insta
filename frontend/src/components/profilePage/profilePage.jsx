@@ -95,7 +95,7 @@ const handleCancelEdit = () => {
           <h2>{user.username}</h2>
           <div className="profile-stats">
           <p className="post-count">Posts: {Object.values(posts).length}</p>
-          {currentUser.id === user.id && ( // Render edit button only for the current user
+          {currentUser.id === user.id && ( 
               <button onClick={handleEditClick}>Edit Profile</button>
             )}
             {isEditOpen && (
@@ -123,8 +123,7 @@ const handleCancelEdit = () => {
         </div>
         </div>
       )}
-          {user !== currentUser ? <FollowButton followeeUser={user} /> : null}
-          {/* {currentUser.id === user.id && ( <FollowButton followeeUser={user} /> )} */}
+          {currentUser.id !== user.id && ( <FollowButton followeeUser={user} /> )}
           <Followers user={user}/>
           <Followings user={user}/>
 
@@ -162,9 +161,9 @@ const handleCancelEdit = () => {
   </div>
 )}
 
-      </div>
-      );
-    }
+  </div>
+  );
+}
     
     export default ProfilePage;
     // <input className="create-post-file-input" type="file" placeholder="Drag photos and videos here" onChange={handleFile} required />

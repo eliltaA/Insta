@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLikes } from "../../store/likesReducer";
+import { Link } from "react-router-dom";
 import "./likes.css";
 
 function Likes({ type, typeId }) {
@@ -36,11 +37,24 @@ function Likes({ type, typeId }) {
                 X
                 </button>
                 <h3>Likes</h3>
-                <ul>
-                {filteredLikes.map(like => (
-                    <li key={like.id}>{like.username}</li>
-                ))}
-            </ul>
+                <ul className="likes-list">
+                    {filteredLikes.map(like => (
+                    <li className="like-item" key={like.id}>
+                        <Link to={`/profile/${like.userId}`}>
+                        <img
+                            className="user-avatar"
+                            src={
+                            like.profilePicture === null
+                                ? process.env.PUBLIC_URL + "/profilePicture.jpg"
+                                : like.profilePicture
+                            }
+                            alt={`${like.username}'s Profile`}
+                        />
+                        <span className="like-username">{like.username}</span>
+                        </Link>
+                    </li>
+                    ))}
+                </ul>
             </div>
         </div>
         )}
