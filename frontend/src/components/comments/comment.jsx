@@ -10,7 +10,7 @@ import CreateLikeButton from '../likes/createLike';
 function Comment({ comment }) {
 
     const userId = comment.authorId;
-    console.log(userId)
+    // console.log(userId)
     const users = useSelector(getUsers);
     // const user = users[userId];
     // console.log(users[userId])

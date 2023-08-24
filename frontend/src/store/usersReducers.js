@@ -43,9 +43,14 @@ export const fetchUser = (userId) => async dispatch => {
 }
 
 export const updateUser = (user) => async dispatch => {
+    const formData = new FormData();
+
+    for (const key in user) {
+        formData.append(`user[${key}]`, user[key]);
+    }
     const res = await csrfFetch(`/api/users/${user.id}`, {
         method: 'PUT',
-        body: user
+        body: formData
     });
     if (res.ok) {
         const user = await res.json();

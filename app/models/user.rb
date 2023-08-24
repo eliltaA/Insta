@@ -21,7 +21,7 @@ class User < ApplicationRecord
     
     before_validation :ensure_session_token
 
-    has_one_attached :profile_photo,
+    has_one_attached :profile_picture,
       dependent: :destroy 
 
     has_many :likes,

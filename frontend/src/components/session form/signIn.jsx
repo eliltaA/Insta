@@ -11,7 +11,7 @@ function SignInForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
- 
+
   if (currentUser !== null) return <Redirect to="/" />;
 
   const handleSignIn = (e) => {
@@ -50,7 +50,7 @@ function SignInForm() {
   return (
     <div className="signin-form-container">
       <div className="signin-logo">
-        <img src="737566.png" alt="Instagram Logo" />
+        <img src={process.env.PUBLIC_URL + "/737566.png"} alt="Instagram Logo" />
       </div>
       <form className="signin-form" onSubmit={handleSignIn}>
         <input
@@ -65,7 +65,7 @@ function SignInForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-         <ul>
+        <ul>
             {errors.map(error => <li key={error}>{error}</li>)}
           </ul>
         <button type="submit">Log In</button>

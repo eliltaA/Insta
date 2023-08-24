@@ -24,7 +24,7 @@ function Header() {
           <>
           <div className="header-left">
             <img
-              src="737566.png"
+              src={process.env.PUBLIC_URL + "/737566.png"}
               alt="Instagram Logo"
               className="instagram-icon"
             />

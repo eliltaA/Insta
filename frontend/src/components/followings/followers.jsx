@@ -47,6 +47,9 @@ function Followers ({user}){
                 if (user.id === following.followeeId) {
                   return( 
                   <li key={following.id}>
+                    {following.followerProPic === null ? <img className="user-avatar" src={process.env.PUBLIC_URL + "/profilePicture.jpg"} alt={`${following.follower}'s Profile`} /> :
+                      <img className="user-avatar" src={following.followerProPic} alt={`${following.follower}'s Profile`} />}
+                    {/* <img className="user-avatar" src={following.followerProPic} alt={`${following.follower}'s Profile`} /> */}
                     <Link to={`/profile/${following.followerId}`} onClick={closeModal}>{following.follower}</Link>
                     {user.id === currentUser.id && (
                     <button onClick={() => handleRemoveFollower(following.id)}>Remove</button>)}

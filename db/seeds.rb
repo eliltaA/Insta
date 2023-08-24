@@ -30,7 +30,7 @@ require "open-uri"
         name: "demo",
         bio: "demo"
     )
-    user2.profile_picture.attach(io: URI.open("https://insta-hosting.s3.us-west-2.amazonaws.com/mood1.jpeg"),filename: "mood1.jpeg")
+    # user2.profile_picture.attach(io: URI.open("https://insta-hosting.s3.us-west-2.amazonaws.com/mood1.jpeg"),filename: "mood1.jpeg")
 
     user3 = User.create!( 
         username: "selam",
