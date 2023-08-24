@@ -15,7 +15,7 @@ function CreateLikeButton({ likeableType, likeableId }) {
         like.likeableId === likeableId
     );
     const hasLiked = userLiked.length > 0;
-    console.log(userLiked)
+    // console.log(userLiked)
 
     const handleLike = () => {
         if (hasLiked) {
@@ -28,7 +28,7 @@ function CreateLikeButton({ likeableType, likeableId }) {
                 likeable_type: likeableType, 
                 likeable_id: likeableId
             }
-            console.log(like)
+            // console.log(like)
         dispatch(createLike(like));
         }
     };

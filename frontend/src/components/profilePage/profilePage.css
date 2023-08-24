@@ -92,6 +92,46 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
+  .pro-pic-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pro-pic-modal input[type="file"] {
+    margin-bottom: 10px;
+  }
+  
+  .pro-pic-modal button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #db3437;
+    color: white;
+  }
+  
+  .pro-pic-modal button:hover {
+    background-color: #f21035;
+  }
+  
+  .pro-pic-modal button:last-child {
+    background-color: #0e0302;
+  }
+  
+  .pro-pic-modal button:last-child:hover {
+    background-color: #040101;
+  }
+  
+  
   
 /* .profile-container {
     max-width: 1200px;
