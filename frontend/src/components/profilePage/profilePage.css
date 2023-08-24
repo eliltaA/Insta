@@ -185,3 +185,78 @@
     border: 1px solid #ccc;
   }
    */
+  
+  
+  .profile-stats {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .profile-stats .post-count {
+    margin-right: 20px;
+    font-size: 14px;
+  }
+  
+  .edit-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .edit-profile-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100; /* Higher z-index to appear on top */
+  }
+  
+  .edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-profile-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .edit-profile-form input[type="text"],
+  .edit-profile-form textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .edit-profile-form button {
+    background-color: #0e7ac2;
+    color: #fff;
+    border: white;
+    cursor: pointer;
+  }
+  
+  .edit-profile-form button.cancel-button {
+    background-color: #ccc;
+  }
+  
+  .edit-profile-form button:hover {
+    background-color: #2980b9;
+  }
+  

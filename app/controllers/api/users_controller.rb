@@ -32,16 +32,23 @@ class Api::UsersController < ApplicationController
     
       def update 
         @user = User.find(params[:id])
-        debugger
+        # debugger
+        # @user.id = current_user.id
         if @user.update(user_params)
           render :show 
         else
           render json: {errors: @user.errors.full_messages}, status: 422
         end
       end
+
+      def delete_pro_pic 
+        @user = User.find(params[:id])
+        @user.profile_picture.purge
+        render :show
+      end
     
       private
       def user_params
-        params.require(:user).permit(:username, :email, :password, :name, :bio, :profile_picture)
+        params.require(:user).permit(:username, :email, :password, :name, :bio, :profile_picture, :id)
       end
 end

@@ -42,15 +42,16 @@ export const fetchUser = (userId) => async dispatch => {
     }
 }
 
-export const updateUser = (user) => async dispatch => {
-    const formData = new FormData();
+export const updateUser = (user, userId) => async dispatch => {
+    // const formData = new FormData();
 
-    for (const key in user) {
-        formData.append(`user[${key}]`, user[key]);
-    }
-    const res = await csrfFetch(`/api/users/${user.id}`, {
-        method: 'PUT',
-        body: formData
+    // for (const key in user) {
+    //     formData.append(`user[${key}]`, user[key]);
+    // }
+    const res = await csrfFetch(`/api/users/${userId}`, {
+        method: 'PATCH',
+        body: user
+        // formData
     });
     if (res.ok) {
         const user = await res.json();
@@ -66,6 +67,17 @@ export const deleteUser = (userId) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeUser(userId));
+    } 
+}
+
+export const deleteProPic = (userId) => async dispatch => {
+    const res = await csrfFetch(`/api/users/${userId}/pro_pic/delete`, {
+        method: 'PATCH'
+    });
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(receiveUser(data));
     } 
 }
 
