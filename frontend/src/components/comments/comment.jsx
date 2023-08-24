@@ -10,31 +10,30 @@ import CreateLikeButton from '../likes/createLike';
 function Comment({ comment }) {
 
     const userId = comment.authorId;
-    // console.log(userId)
     const users = useSelector(getUsers);
-    // const user = users[userId];
-    // console.log(users[userId])
-    // console.log(user)
     const dispatch = useDispatch();
-
-    useEffect(()=>{
-        dispatch(fetchUsers())
-    },[dispatch])
-    // const user = useSelector(getUser(userId));
-    // console.log(user)
     
+    useEffect(()=>{
+      dispatch(fetchUsers())
+    },[dispatch])
+    const author = users[userId];
+
   return (
     <div className="comment">
-      {/* <img className="comment-author-avatar" src={comment.authorAvatar} alt={`${comment.author}'s Avatar`} /> */}
       <div className="comment-content">
-        <div className="comment-author">
-            {Object.values(users).map(user => (
-                // console.log(user)
-                // console.log(users[userId])
-                // console.log(user.username)
+      {author && (
+            <Link key={author.id} to={`/profile/${userId}`}>
+              {author.profilePicture === null ? <img className="user-avatar" src={process.env.PUBLIC_URL + "/profilePicture.jpg"} alt={`${author.username}'s Profile`} /> :
+              <img className="user-avatar" src={author.profilePicture} alt={`${author.username}'s Profile`} />}
+              {/* <img src={author.profilePicture} alt={`${author.username}'s Profile`} /> */}
+              <span>{author.username}</span>
+            </Link>
+          )}
+        {/* <div className="comment-author">
+            {Object.values(users).map(user =>(
             <Link key={user.id} to={`/profile/${userId}`}>{user.id === userId ? user.username : null}</Link>
-        ))}
-        </div>
+            ))}
+        </div> */}
         <span className="comment-text">{comment.commentBody}</span>
         <Likes type="Comment" typeId={comment.id} />
         <CreateLikeButton likeableType="Comment" likeableId={comment.id} />
