@@ -8,6 +8,7 @@ import usersReducer from './usersReducers';
 import commentsReducer from './commentsReducer';
 import followingsReducer from './followingReducer';
 import likesReducer from './likesReducer';
+import darkModeReducer from './darkModeReducer';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   comments: commentsReducer,
   followings: followingsReducer,
   likes: likesReducer,
-  errors: errorsReducer
+  errors: errorsReducer,
+  darkMode: darkModeReducer
 })
 
 const middleware = [thunk]

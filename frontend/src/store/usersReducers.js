@@ -24,8 +24,13 @@ export const getUsers = (state) => state.users;
 export const getUser = (userId) => (state) => state.users[userId];
 
 
-export const fetchUsers = () => async dispatch => {
-    const res = await csrfFetch('/api/users')
+export const fetchUsers = (params) => async dispatch => {
+    let baseUrl = `/api/users?search=${params}`
+
+    // for (let k in params) {
+    //     baseUrl = baseUrl + `${k}=${params[k]}&`
+    // }
+    const res = await csrfFetch(baseUrl)
     if (res.ok) {
         const users = await res.json();
         dispatch(receiveUsers(users))

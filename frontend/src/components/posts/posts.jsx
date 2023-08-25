@@ -6,6 +6,8 @@ import { fetchPosts, getPosts } from '../../store/postsReducer';
 import PostModal from '../profilePage/postModal';
 import Likes from '../likes/likes';
 import CreateLikeButton from '../likes/createLike';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-solid-svg-icons'
 import "./posts.css"
 
 function Posts () {
@@ -28,9 +30,15 @@ function Posts () {
             <Link className="username" to={`/profile/${post.authorId}`}>{post.username}</Link>
           </div>
           <img className="post-image" src={post.photoUrl} alt="Post" />
-          <h3 className="post-caption">{post.caption}</h3>
-          <Likes type="Post" typeId={post.id} />
+          <div className='like-comment-icons'>
           <CreateLikeButton likeableType="Post" likeableId={post.id} />
+          <span className='comment-icon'><FontAwesomeIcon icon={faComment} size="lg" /></span>
+          </div>
+          <Likes type="Post" typeId={post.id} />
+          <div className='name-caption'>
+          <Link to={`/profile/${post.userId}`}>{post.username}</Link>
+          <h3 className="post-caption">{post.caption}</h3>
+          </div>
           </div>
       ))}
       {selectedPost && (

@@ -166,4 +166,3 @@ const handleCancelEdit = () => {
 }
     
     export default ProfilePage;
-    // <input className="create-post-file-input" type="file" placeholder="Drag photos and videos here" onChange={handleFile} required />
