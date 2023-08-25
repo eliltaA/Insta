@@ -6,13 +6,19 @@ import errorsReducer from './errorsReducer';
 import postsReducer from './postsReducer';
 import usersReducer from './usersReducers';
 import commentsReducer from './commentsReducer';
+import followingsReducer from './followingReducer';
+import likesReducer from './likesReducer';
+import darkModeReducer from './darkModeReducer';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   users: usersReducer,
   posts: postsReducer,
   comments: commentsReducer,
-  errors: errorsReducer
+  followings: followingsReducer,
+  likes: likesReducer,
+  errors: errorsReducer,
+  darkMode: darkModeReducer
 })
 
 const middleware = [thunk]

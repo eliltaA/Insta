@@ -28,13 +28,13 @@ function CreatePost () {
     }
 
     const handleFile = e => {
-        console.log('handling file...')
+        // console.log('handling file...')
         const file = e.currentTarget.files[0]
-        console.log(file)
+        // console.log(file)
         setPhoto(file)
-      }
+    }
 
- return(
+return(
     <>
     <div className="create-post-container">
             <form className="create-post-form" onSubmit={handleSubmit}>
@@ -51,6 +51,6 @@ function CreatePost () {
             </form>
         </div>
     </>
-   )
+    )
 }
 export default CreatePost;

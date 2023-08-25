@@ -6,11 +6,13 @@ import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSearch, faHome } from '@fortawesome/free-solid-svg-icons'
 import LogoutButton from '../session form/signOut';
+import Search from './search';
+import DarkModeToggle from '../../darkMode';
 // import CreatePost from '../posts/createPost';
 
 function Header() {
   const currentUser = useSelector(state => state.session.user); 
-  
+  // console.log(currentUser.profilePicture)
   return (
     <header>
       <nav>
@@ -22,16 +24,16 @@ function Header() {
           </>
         ) : (
           <>
+          {/* <DarkModeToggle/> */}
           <div className="header-left">
             <img
-              src="737566.png"
+              src={process.env.PUBLIC_URL + "/737566.png"}
               alt="Instagram Logo"
               className="instagram-icon"
             />
           <div className="search-bar">
-          {/* <i className="fas fa-search search-icon"></i> */}
-          <FontAwesomeIcon icon={faSearch} />
-            {/* Add your search bar component here */}
+          {/* <FontAwesomeIcon icon={faSearch} /> */}
+          < Search/>
           </div>
         </div>
           {/* <Link to="/dashboard">Dashboard</Link> */}
@@ -39,12 +41,16 @@ function Header() {
             <FontAwesomeIcon icon={faHome} />
           </Link>
               <Link to="/addPost">
-                {/* <i className="fas fa-plus"></i> */}
                 <FontAwesomeIcon icon={faPlus} />
               </Link>
 
               <Link to={`/profile/${currentUser.id}`}>
-              </Link>
+              <img
+                src={currentUser.profilePicture || process.env.PUBLIC_URL + "/profilePicture.jpg"}
+                alt={`${currentUser.username}'s Profile`}
+                className="user-avatar"
+              />
+            </Link>
 
               <LogoutButton />
           </>

@@ -7,13 +7,13 @@ require "open-uri"
 #   Character.create(name: "Luke", movie: movies.first)
 
     Comment.destroy_all
-    # Like.destroy_all
+    Like.destroy_all
     Post.destroy_all
     User.destroy_all
 
     ActiveRecord::Base.connection.reset_pk_sequence!('users')
     ActiveRecord::Base.connection.reset_pk_sequence!('post')
-    # ActiveRecord::Base.connection.reset_pk_sequence!('like')
+    ActiveRecord::Base.connection.reset_pk_sequence!('like')
     ActiveRecord::Base.connection.reset_pk_sequence!('comment')
     user1 = User.create!( 
         username: "ella_123",
@@ -30,6 +30,7 @@ require "open-uri"
         name: "demo",
         bio: "demo"
     )
+    # user2.profile_picture.attach(io: URI.open("https://insta-hosting.s3.us-west-2.amazonaws.com/mood1.jpeg"),filename: "mood1.jpeg")
 
     user3 = User.create!( 
         username: "selam",
@@ -41,6 +42,8 @@ require "open-uri"
         # I chose peace ✌🏾
         # Never easy but always worth it 😊
     )
+    user3.profile_picture.attach(io: URI.open("https://insta-hosting.s3.us-west-2.amazonaws.com/s1.jpeg"),filename: "s1.jpeg")
+
 
     user4 = User.create!( 
         username: "linlouu",
@@ -271,4 +274,46 @@ require "open-uri"
         post_id: post21.id
     )
 
-    
+    #likes
+
+like1 = Like.create!(
+    user_id: user4.id,
+    # username: "linlouu",
+    likeable_type: 'Post',
+    likeable_id: post1.id
+)
+
+like2 = Like.create!(
+    user_id: user2.id,
+    # username: "demouser",
+    likeable_type: 'Post',
+    likeable_id: post2.id
+)
+
+like3 = Like.create!(
+    user_id: user3.id,
+    # username: "selam",
+    likeable_type: 'Post',
+    likeable_id: post3.id
+)
+
+like4 = Like.create!(
+    user_id: user2.id,
+    # username: "demouser",
+    likeable_type: 'Post',
+    likeable_id: post1.id
+)
+
+like5 = Like.create!(
+    user_id: user2.id,
+    # username: "demouser",
+    likeable_type: 'Comment',
+    likeable_id: comment1.id
+)
+
+like6 = Like.create!(
+    user_id: user3.id,
+    # username: "selam",
+    likeable_type: 'Comment',
+    likeable_id: comment3.id
+)

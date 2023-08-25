@@ -20,20 +20,34 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6 }, allow_nil: true
     
     before_validation :ensure_session_token
-   
+
+    has_one_attached :profile_picture,
+      dependent: :destroy 
+
+    has_many :likes,
+      foreign_key: :user_id,
+      class_name: :Like,
+      dependent: :destroy
+
   has_many :posts,
     foreign_key: :author_id,
     class_name: :Post,
     dependent: :destroy
     
-#   has_one_attached :profile_photo, dependent: :destroy  
   has_many :comments,
     foreign_key: :author_id,
     class_name: :Comment,
     dependent: :destroy  
-#   has_many :likes
-#   has_many :followers
-#   has_many :followees
+
+  has_many :followers,
+    foreign_key: :follower_id,
+    class_name: :Following,
+    dependent: :destroy
+
+  has_many :followees,
+    foreign_key: :followee_id,
+    class_name: :Following,
+    dependent: :destroy
 
 
     def self.find_by_credentials(username, password)
