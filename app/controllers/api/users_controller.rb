@@ -9,8 +9,13 @@ class Api::UsersController < ApplicationController
     # end
 
     def index
+      if params[:search] 
+        @users = User.where("username ILIKE '%#{params[:search]}%' ")
+        render :search
+      else
         @users = User.all 
         render :index
+      end
       end 
 
       def create

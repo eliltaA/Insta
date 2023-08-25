@@ -61,7 +61,7 @@ function PostModal({ post, onClose }) {
               <div className="post-modal-caption">
                 {/* <div className="caption-username">{post.username}</div> */}
                 {/* <Link to={`/profile/${post.authorId}`}>{post.username}</Link> */}
-                <Link to={`/profile/${post.authorId}`}>
+                <Link key={post.authorId} to={`/profile/${post.authorId}`}>
                         <img
                             className="user-avatar"
                             src={
@@ -71,7 +71,7 @@ function PostModal({ post, onClose }) {
                             }
                             alt={`${post.username}'s Profile`}
                         />
-                        <span className="like-username">{post.username}</span>
+                        <span className="post-username">{post.username}</span>
                         </Link>
 
               {post.authorId === currentUser.id && (
