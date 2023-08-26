@@ -45,7 +45,7 @@ function Likes({ type, typeId }) {
                             className="user-avatar"
                             src={
                             like.profilePicture === null
-                                ? process.env.PUBLIC_URL + "/profilePicture.jpg"
+                                ? 'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'
                                 : like.profilePicture
                             }
                             alt={`${like.username}'s Profile`}

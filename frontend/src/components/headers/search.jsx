@@ -54,7 +54,7 @@ function Search(){
                     src={
                         searchedUser.profilePicture
                         ? searchedUser.profilePicture
-                        : process.env.PUBLIC_URL + "/profilePicture.jpg"
+                        : 'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'
                     }
                     alt={`${searchedUser.username}'s Profile`}
                     />

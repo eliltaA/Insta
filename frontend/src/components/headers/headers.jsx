@@ -46,7 +46,7 @@ function Header() {
 
               <Link to={`/profile/${currentUser.id}`}>
               <img
-                src={currentUser.profilePicture || process.env.PUBLIC_URL + "/profilePicture.jpg"}
+                src={currentUser.profilePicture || 'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'}
                 alt={`${currentUser.username}'s Profile`}
                 className="user-avatar"
               />

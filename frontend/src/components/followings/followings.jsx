@@ -45,7 +45,7 @@ function Followings ({user}){
                   const followeeUser = {id: following.followeeId, username: following.followee}
                   return (
                     <li key={following.id}>
-                      {following.followeeProPic === null ? <img className="user-avatar" src={process.env.PUBLIC_URL + "/profilePicture.jpg"} alt={`${following.followee}'s Profile`} /> :
+                      {following.followeeProPic === null ? <img className="user-avatar" src={'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'} alt={`${following.followee}'s Profile`} /> :
                       <img className="user-avatar" src={following.followeeProPic} alt={`${following.followee}'s Profile`} />}
                       <Link to={`/profile/${following.followeeId}`} onClick={closeModal}>{following.followee}</Link>
                       <FollowButton followeeUser={followeeUser} />

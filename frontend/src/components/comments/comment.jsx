@@ -23,7 +23,7 @@ function Comment({ comment }) {
       <div className="comment-content">
       {author && (
             <Link key={author.id} to={`/profile/${userId}`}>
-              {author.profilePicture === null ? <img className="user-avatar" src={process.env.PUBLIC_URL + "/profilePicture.jpg"} alt={`${author.username}'s Profile`} /> :
+              {author.profilePicture === null ? <img className="user-avatar" src={'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'} alt={`${author.username}'s Profile`} /> :
               <img className="user-avatar" src={author.profilePicture} alt={`${author.username}'s Profile`} />}
               {/* <img src={author.profilePicture} alt={`${author.username}'s Profile`} /> */}
               <span>{author.username}</span>
