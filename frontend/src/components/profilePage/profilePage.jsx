@@ -87,7 +87,7 @@ const handleCancelEdit = () => {
     <div className="profile-container">
       <div className="profile-header">
         <div className="profile-avatar" onClick={() => currentUser.id === user.id && setProPicModal(true)}>
-        {user.profilePicture === null ? <img src={process.env.PUBLIC_URL + "/profilePicture.jpg"} alt={`${user.username}'s Profile`} /> :
+        {user.profilePicture === null ? <img src={"https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG"} alt={`${user.username}'s Profile`} /> :
               <img src={user.profilePicture} alt={`${user.username}'s Profile`} />}
           {/* <img src={user.profilePictureUrl} alt={`${user.username}'s Profile`} /> */}
         </div>

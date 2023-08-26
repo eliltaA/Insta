@@ -66,7 +66,7 @@ function PostModal({ post, onClose }) {
                             className="user-avatar"
                             src={
                             post.profilePicture === null
-                                ? process.env.PUBLIC_URL + "/profilePicture.jpg"
+                                ? 'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'
                                 : post.profilePicture
                             }
                             alt={`${post.username}'s Profile`}
