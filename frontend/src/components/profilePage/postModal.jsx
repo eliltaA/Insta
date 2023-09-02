@@ -112,10 +112,10 @@ function PostModal({ post, onClose }) {
               </div>
               <div className="comments-section">
               {Object.values(comments).filter(comment => comment.postId === post.id).map(comment => (
-                <>
-                  <Comment key={comment.id} comment={comment} />
-                  <EditDeleteComment key={comment.id} comment={comment}/>
-                </>
+                <React.Fragment key={comment.id}>
+                  <Comment comment={comment} />
+                  <EditDeleteComment comment={comment}/>
+                </React.Fragment>
                 ))}
               </div>
               <div className='create-comment'>
@@ -123,7 +123,6 @@ function PostModal({ post, onClose }) {
               </div>
               </div>
             </div>
-            
           </div>
         );
       }
