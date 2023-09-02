@@ -3,7 +3,7 @@ import { csrfFetch } from "../utils/csrf";
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
 export const REMOVE_USER = "users/REMOVE_USER";
-
+export const RECEIVE_COMMENTER = "users/RECEIVE_COMMENTER";
 export const receiveUsers = (users) => ({
     type: RECEIVE_USERS,
     users
@@ -19,6 +19,12 @@ export const removeUser = (userId) => ({
     type: REMOVE_USER,
     userId
 })
+
+export const receiveCommenter = (user) => {
+    // debugger
+    return {type: RECEIVE_COMMENTER,
+    user: user}
+}
 
 export const getUsers = (state) => state.users;
 export const getUser = (userId) => (state) => state.users[userId];
@@ -43,6 +49,15 @@ export const fetchUser = (userId) => async dispatch => {
     if(res.ok) {
         const user = await res.json();
         dispatch(receiveUser(user))
+        return user
+    }
+}
+
+export const fetchCommenter = (userId) => async dispatch => {
+    const res = await csrfFetch(`/api/users/${userId}`);
+    if(res.ok) {
+        const user = await res.json();
+        dispatch(receiveCommenter(user))
         return user
     }
 }
@@ -91,11 +106,14 @@ const usersReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_USERS:
-            return { ...state, ...action.users };
+            return { ...action.users };
             // return Object.assign(nextState, action.users)  
         case RECEIVE_USER:
             nextState[action.user.user.id] = action.user.user;
             // console.log(action.user.user.id)
+            return nextState;
+        case RECEIVE_COMMENTER:
+            nextState[action.user.user.id] = action.user.user;
             return nextState;
         case REMOVE_USER:
             delete nextState[action.userId];

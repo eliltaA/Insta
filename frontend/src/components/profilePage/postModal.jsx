@@ -3,7 +3,7 @@ import { useRef, useState, useEffect} from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from 'react-redux';
 import './postModal.css'; // Import your styling if needed
-import { deletePost, updatePost } from '../../store/postsReducer';
+import { deletePost, getPost, updatePost } from '../../store/postsReducer';
 import { useSelector } from 'react-redux';
 import CreateComment from '../comments/createComments';
 import Comment from '../comments/comment';
@@ -16,13 +16,12 @@ function PostModal({ post, onClose }) {
     const modalRef = useRef(null);
     const dispatch = useDispatch();
     const comments = useSelector(getComments);
-    // const postId = post.id
     const currentUser =  useSelector(state => state.session.user);
     const [editedCaption, setEditedCaption] = useState(post.caption)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [optionsVisible, setOptionsVisible] = useState(false);
-
+  console.log(post, "test")
     useEffect(() => {
       dispatch(fetchComments())
     },[dispatch])

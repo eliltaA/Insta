@@ -34,7 +34,7 @@ function Posts () {
           <CreateLikeButton likeableType="Post" likeableId={post.id} />
           <span className='comment-icon'><FontAwesomeIcon icon={faComment} size="lg" /></span>
           </div>
-          <Likes type="Post" typeId={post.id} />
+          <div className='likes-no'><Likes type="Post" typeId={post.id} /></div>
           <div className='name-caption'>
           <Link to={`/profile/${post.userId}`}>{post.username}</Link>
           <h3 className="post-caption">{post.caption}</h3>
