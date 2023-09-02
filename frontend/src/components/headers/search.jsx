@@ -1,4 +1,5 @@
 import { useMemo, useState} from 'react'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import {useDispatch} from 'react-redux'
 import { useSelector } from 'react-redux'
 import { fetchUsers, getUsers } from '../../store/usersReducers'
@@ -7,6 +8,7 @@ function Search(){
     const dispatch = useDispatch()
     const [searchParams, setSearchParams] = useState('')
     const searchedUsers = useSelector(getUsers);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
 
     const handleSearch = e => {
         e.preventDefault()
@@ -30,12 +32,16 @@ function Search(){
     const handleInputChange = field => async e => {
         const newParams =  e.target.value 
         debouncedSearch(newParams)
-        await setSearchParams(prev => ( e.target.value))
+        await setSearchParams(prev => ( e.target.value));
+        setDropdownVisible(true);
     }
+
+    const closeDropdown = () => {
+        setDropdownVisible(false);
+    };
 
     return (
         <div className='search'>
-        {/* <h3>Search</h3> */}
         <form className='search-form' onSubmit={handleSearch}>
             <input
                 placeholder='search'
@@ -43,12 +49,13 @@ function Search(){
                 onChange={handleInputChange('search')}
             />
         </form>
+        {dropdownVisible && (
         <div className="search-results">
         {searchParams && Object.values(searchedUsers).length > 0 ? (
             <div className="search-dropdown">
+                <button className="close-dropdown-button" onClick={closeDropdown}> X </button>
                 {Object.values(searchedUsers).map(searchedUser => (
-                <div key={searchedUser.id} className="search-result">
-                    {/* Display user information here */}
+                <Link key={searchedUser.id} className="search-result" to={`/profile/${searchedUser.id}`}>
                     <img
                     className="user-avatar"
                     src={
@@ -59,11 +66,12 @@ function Search(){
                     alt={`${searchedUser.username}'s Profile`}
                     />
                     <span>{searchedUser.username}</span>
-                </div>
+                </Link>
                 ))}
             </div>
             ) : null}
             </div>
+            )}
         </div>
     )
 }
