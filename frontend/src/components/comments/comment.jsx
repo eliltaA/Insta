@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { fetchUsers, getUsers } from '../../store/usersReducers';
+import { fetchCommenter, getUser } from '../../store/usersReducers';
 import Likes from '../likes/likes';
 import CreateLikeButton from '../likes/createLike';
 // import './Comment.css'; 
@@ -10,13 +10,13 @@ import CreateLikeButton from '../likes/createLike';
 function Comment({ comment }) {
 
     const userId = comment.authorId;
-    const users = useSelector(getUsers);
+    const author = useSelector(getUser(userId));
     const dispatch = useDispatch();
     
     useEffect(()=>{
-      dispatch(fetchUsers())
+      dispatch(fetchCommenter(userId))
     },[dispatch])
-    const author = users[userId];
+    // const author = users[userId];
 
   return (
     <div className="comment">

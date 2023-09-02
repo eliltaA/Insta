@@ -27,12 +27,6 @@ function ProfilePage() {
     dispatch(fetchUser(userId)); 
   }, [dispatch, userId]);
 
-//   const handleUploadProPic = (e) => {
-//     const file = e.target.files[0];
-//     const updatedUser = { ...user, profilePicture: file };
-//     dispatch(updateUser(updatedUser));
-//     setProPicModal(false);
-// }
 const handleUploadProPic = (e) => {
   e.preventDefault();
   const file = e.target.files[0];

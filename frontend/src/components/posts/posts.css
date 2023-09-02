@@ -108,9 +108,13 @@
 }
 
 .comment-icon {
-  font-size: 23px; /* Adjust the size as needed */
+  font-size: 23px;
   margin-right: 10px;
-  color: #cdc7c7; /* Adjust the color to match Instagram's design */
+  color: #cdc7c7; 
+}
+
+.likes-no {
+  margin-right: 400px; 
 }
 
 /* .post-image {
