@@ -50,8 +50,6 @@ function EditDeleteComment ({comment}){
                         <div className='comment-actions'>
                         <a href="#" onClick={handleEdit}>Edit</a>
                         <a href="#" onClick={handleDelete}>Delete</a>
-                            {/* <button onClick={handleEdit}>Edit</button>
-                            <button onClick={handleDelete}>Delete</button> */}
                         </div>
                     )}
                     {isEditing && (

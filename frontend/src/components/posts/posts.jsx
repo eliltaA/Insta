@@ -9,17 +9,22 @@ import CreateLikeButton from '../likes/createLike';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 import "./posts.css"
+import { fetchComments, getComments } from '../../store/commentsReducer';
+import CreateComment from '../comments/createComments';
 
 function Posts () {
   const dispatch = useDispatch();
   const posts =  useSelector(getPosts);
   const [selectedPost, setSelectedPost] = useState(null);
-//   console.log(posts)
+  const comments = useSelector(getComments)
+  console.log(posts.comments)
 
   useEffect(() => {
     dispatch(fetchPosts())
+    dispatch(fetchComments())
   },[dispatch])
 
+  
   return (
     <div className="posts-container">
       {Object.values(posts).map(post => (
@@ -35,10 +40,13 @@ function Posts () {
           <span className='comment-icon'><FontAwesomeIcon icon={faComment} size="lg" /></span>
           </div>
           <div className='likes-no'><Likes type="Post" typeId={post.id} /></div>
+          {post.caption && (
           <div className='name-caption'>
           <Link to={`/profile/${post.userId}`}>{post.username}</Link>
-          <h3 className="post-caption">{post.caption}</h3>
-          </div>
+          <span className="post-caption">{post.caption}</span>
+          </div>)}
+          <div className='comments-count'>View all {Object.values(comments).filter(comment => comment.postId === post.id).length} comments</div>
+          <CreateComment/>
           </div>
       ))}
       {selectedPost && (
@@ -49,6 +57,7 @@ function Posts () {
       )}
     </div>
   );
+      
 }
 
 export default Posts;

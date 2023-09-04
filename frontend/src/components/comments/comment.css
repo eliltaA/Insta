@@ -1,45 +1,45 @@
 /* Comment Container */
-.comment {
+/* .comment {
     margin-bottom: 20px;
     padding: 10px;
     border-top: 1px solid #e0e0e0;
-  }
+  } */
   
   /* Comment Content */
-  .comment-content {
+  /* .comment-content {
     display: flex;
     align-items: flex-start;
-  }
+  } */
   
   /* Comment Author */
-  .comment-author {
+  /* .comment-author {
     display: flex;
     align-items: center;
     margin-right: 10px;
-  }
+  } */
   
-  .comment-author img {
+  /* .comment-author img {
     width: 32px;
     height: 32px;
     border-radius: 50%;
     margin-right: 10px;
-  }
+  } */
   
-  .comment-author a {
+  /* .comment-content a {
     font-weight: bold;
     color: #000;
     text-decoration: none;
-  }
+  } */
   
   /* Comment Text */
-  .comment-text {
+  /* .comment-text {
     flex: 1;
     margin-right: 10px;
     color: #000;
-  }
+  } */
   
   /* Likes and Like Button */
-  .comment-likes {
+  /* .comment-likes {
     display: flex;
     align-items: center;
     margin-top: 5px;
@@ -60,5 +60,70 @@
   
   .comment-like-button:hover {
     color: #d43f3a;
+  }
+   */
+
+   /* comment.css */
+
+   /* .comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  } */
+  
+  .comment-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+  }
+  
+  .user-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .comment-text {
+    font-size: 14px;
+    line-height: 18px;
+    color: #262626;
+    margin-right: 16px;
+    /* margin-left: 16px; */
+    margin-top: 15px;
+  }
+  
+  .c-likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 8px; */
+    font-size: 12px;
+    color: #8e8e8e;
+  }
+  
+  /* .comment-content .fa-heart {
+    color: #8e8e8e;
+  } */
+  
+  .comment-content a {
+    font-weight: 600;
+    color: #262626;
+    text-decoration: none;
+  }
+  
+  .comment-content a:hover {
+    text-decoration: underline;
   }
   

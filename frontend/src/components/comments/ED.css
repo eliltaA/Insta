@@ -36,7 +36,7 @@
   }
    */
 
-   .comment-actions a {
+   /* .comment-actions a {
     display: flex;
     flex-direction: row;
     font-size: 12.5px;
@@ -44,6 +44,44 @@
     color: #888282;
     text-decoration: none;
 }
+ */
 
+.comment-actions {
+  display: flex;
+  gap: 8px;
+}
 
-  
+.comment-actions a {
+  text-decoration: none;
+  color: #0095f6;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.comment-actions a:hover {
+  text-decoration: underline;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+button {
+  background-color: #0095f6;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007acc;
+}
+

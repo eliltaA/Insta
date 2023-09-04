@@ -87,50 +87,52 @@
 }
 
 .name-caption a {
+  /* margin-right: 400px; */
   font-weight: 600;
   color: #262626;
   text-decoration: none;
 }
 
-
 .post-caption {
-  padding: 16px;
+  padding: 5px;
   font-size: 14px;
   line-height: 18px;
 }
+
 .name-caption{
+  margin-left: 8px;
   display: flex;
   align-items: center;
 }
 
 .like-comment-icons{
+  margin-left: 7px;
   display: flex;
 }
 
 .comment-icon {
   font-size: 23px;
-  margin-right: 10px;
+  margin-left: 8px;
   color: #cdc7c7; 
 }
 
 .likes-no {
-  margin-right: 400px; 
+  margin-top: 6px;
+  margin-bottom: 4px;
+  margin-right: 395px; 
 }
 
-/* .post-image {
-  max-width: 100%;
-  height: auto;
+.comments-count {
+  font-size: 14px; 
+  color: #8e8e8e; 
+  margin-top: 4px;
+  margin-bottom: 5px;
+  margin-right: 313px; 
+  cursor: pointer;
 }
-*/
-/* .profile-avatar img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-} */
-/* .posts-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  } */
-  
+
+.comments-count:hover {
+  text-decoration: underline; 
+  color: #262626; 
+}
+
