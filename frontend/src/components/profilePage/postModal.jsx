@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import CreateComment from '../comments/createComments';
 import Comment from '../comments/comment';
 import { fetchComments, getComments } from '../../store/commentsReducer';
-import EditDeleteComment from '../comments/editDeleteComment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
@@ -114,11 +113,10 @@ function PostModal({ post, onClose }) {
               {Object.values(comments).filter(comment => comment.postId === post.id).map(comment => (
                 <React.Fragment key={comment.id}>
                   <Comment comment={comment} />
-                  <EditDeleteComment comment={comment}/>
                 </React.Fragment>
                 ))}
               </div>
-              <div className='create-comment'>
+              <div className='create'>
                 <CreateComment postId={post.id}/>
               </div>
               </div>

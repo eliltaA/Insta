@@ -4,5 +4,6 @@
         json.photoUrl post.photo.url
         json.username post.author.username
         json.profile_picture post.author.profile_picture.url
+        # json.post post.comments
     end
 end

@@ -1,0 +1,43 @@
+/* CreateComment.css */
+.create-container{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: auto; 
+}
+.create-comment {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #e1e1e1;
+    width: 100%;
+  }
+  
+  .comment-input {
+    flex-grow: 1;
+    border: none;
+    padding: 8px;
+    font-size: 15px;
+    outline: none;
+  }
+  
+  .comment-input::placeholder {
+    color: #9b9b9b;
+  }
+  
+  .comment-submit-button {
+    background-color: transparent;
+    border: none;
+    color: #0095f6;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  
+  .comment-submit-button:hover {
+    text-decoration: underline;
+  }
+
+  .smiley-icon {
+    color: #b6b5b5;
+  }
