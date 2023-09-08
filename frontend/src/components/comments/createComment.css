@@ -2,12 +2,16 @@
 .create-container{
     height: fit-content;
     display: flex;
+    /* display: fixed; */
+    bottom: 90%;
     flex-direction: column;
     align-items: flex-end;
     margin-top: auto; 
 }
 .create-comment {
     display: flex;
+    display: fixed;
+    bottom: 90%;
     align-items: center;
     border-top: 1px solid #e1e1e1;
     width: 100%;
