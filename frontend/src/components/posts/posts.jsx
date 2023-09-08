@@ -17,18 +17,23 @@ function Posts () {
   const posts =  useSelector(getPosts);
   const [selectedPost, setSelectedPost] = useState(null);
   const comments = useSelector(getComments)
-  console.log(posts.comments)
+  // console.log(posts.comments)
 
   useEffect(() => {
     dispatch(fetchPosts())
     dispatch(fetchComments())
   },[dispatch])
 
+  const handlePostClick = (e, post) => {
+    if (!e.target.classList.contains("likes-no") && !e.target.closest(".likes-no")){
+      setSelectedPost(post)
+    }
+  }
   
   return (
     <div className="posts-container">
       {Object.values(posts).map(post => (
-        <div className="post-item" key={post.id} onClick={(e)=> setSelectedPost(post)}>
+        <div className="post-item" key={post.id} onClick={(e)=> handlePostClick(e, post)}>
           <div className="user-info">
             {post.profilePicture === null ? <img className="user-avatar" src='https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG' alt={`${post.username}'s Profile`} /> :
               <img className="user-avatar" src={post.profilePicture} alt={`${post.username}'s Profile`} />}

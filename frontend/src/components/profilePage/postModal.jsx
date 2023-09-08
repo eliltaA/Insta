@@ -20,7 +20,7 @@ function PostModal({ post, onClose }) {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [optionsVisible, setOptionsVisible] = useState(false);
-  console.log(post, "test")
+  // console.log(post, "test")
     useEffect(() => {
       dispatch(fetchComments())
     },[dispatch])
@@ -35,7 +35,7 @@ function PostModal({ post, onClose }) {
     const handleDelete = async e => {
         e.preventDefault();
         const deleted = await dispatch(deletePost(post.id));
-        if (deleted) setDeleteModalOpen(false) 
+        setDeleteModalOpen(false) 
     };
 
     const handleEdit = async e => {
@@ -49,6 +49,7 @@ function PostModal({ post, onClose }) {
         const edited = await dispatch(updatePost(newPost));
         setEditedCaption(post.caption)
         if (edited) onClose();
+        setEditModalOpen(false);
       };
       
       return (
@@ -72,6 +73,7 @@ function PostModal({ post, onClose }) {
                         <span className="post-username">{post.username}</span>
                         </Link>
 
+              <span className="caption-text">{post.caption}</span>
               {post.authorId === currentUser.id && (
               <div className="ellipsis-icon" onClick={() => setOptionsVisible(!optionsVisible)}>
                 <FontAwesomeIcon icon={faEllipsisH} size="lg" />
@@ -83,13 +85,6 @@ function PostModal({ post, onClose }) {
                 )}
               </div>
             )}
-                {post.authorId === currentUser.id ? (
-                  <>
-                    <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
-                  </>
-                ) : (
-                  <span className="caption-text">{post.caption}</span>
-                  )}
 
                   {/* Delete Confirmation Modal */}
                   {deleteModalOpen && (
@@ -124,17 +119,22 @@ function PostModal({ post, onClose }) {
           </div>
         );
       }
-      
       export default PostModal;
       
       
       
       
       {/* <div className="post-modal-details">
-        {post.authorId !== currentUser.id ? null : (
-          <div className="post-modal-options">
-            <button className="delete-button" onClick={() => setDeleteModalOpen(true)}>Delete</button>
-            <button className="edit-button" onClick={() => setEditModalOpen(true)}>Edit</button>
-          </div>
+      {post.authorId !== currentUser.id ? null : (
+        <div className="post-modal-options">
+        <button className="delete-button" onClick={() => setDeleteModalOpen(true)}>Delete</button>
+        <button className="edit-button" onClick={() => setEditModalOpen(true)}>Edit</button>
+        </div>
         )}
       </div> */}
+      {/* {post.authorId === currentUser.id ? (
+        <>
+          <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
+        </>
+      ) : ( */}
+        {/* )} */}
