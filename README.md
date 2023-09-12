@@ -9,8 +9,8 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 * React
 * Redux
 * Ruby on Rails
-* AWS
 * PostgreSQL
+* AWS
 * HTML
 * CSS
 
@@ -38,5 +38,5 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 - Unique Profiles: Each user has a unique profile where they can upload a profile picture, write a bio, and update their contact information.
 
 ## Search Functionality
-- Search Posts and Users: Users can search for other users using keywords or names, making content discovery easy.
+- Search Posts and Users: Users can search for other users using keywords or names, making users discovery easy.
 
