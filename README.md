@@ -3,3 +3,13 @@ Welcome to Insta! This web application replicates the core features of the popul
 
 ## Live 
 Visit the app: [Insta](https://insta-hosting.onrender.com)
+
+# Technologies
+* JavaScript
+* React
+* Redux
+* Ruby on Rails
+* AWS
+* PostgreSQL
+* HTML
+* CSS
