@@ -24,6 +24,9 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 - Image Upload: Users can upload images from their devices to share with their followers.
 - User Feed: The main feed displays a chronological stream of posts from followed users, keeping users updated on their friends' activities.
 
+## User Profiles
+- Unique Profiles: Each user has a unique profile where they can upload a profile picture, write a bio, and update their contact information.
+  
 ## Likes
 - Like and Unlike: Users can like and unlike posts to show appreciation and engagement.
 
@@ -34,9 +37,6 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 - Follow Other Users: Users can follow other users to receive their posts in their feed.
 - Unfollow Users: Users can unfollow users at any time to control their feed content.
   
-## User Profiles
-- Unique Profiles: Each user has a unique profile where they can upload a profile picture, write a bio, and update their contact information.
-
 ## Search Functionality
 - Search Posts and Users: Users can search for other users using keywords or names, making users discovery easy.
 
