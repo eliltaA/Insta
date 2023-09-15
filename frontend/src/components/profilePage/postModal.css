@@ -41,7 +41,7 @@
 
 .post-modal-caption {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   /* justify-content: space-between; */
   padding-top: 6px;
   padding-bottom: 1px;
@@ -49,15 +49,18 @@
 }
 
 .caption-text {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 18px;
   /* line-height: 1.5; */
   /* margin-top: 10px; */
   padding-left: 10px;
-  padding-right: 27px;
+  padding-right: 2px;
   /* position: absolute; */
-  max-width: fit-content;
-  /* top: 9px; */
+  font-size: 15px;
+  line-height: 18px;
+  padding-left: 10px;
+  word-wrap: break-word;
+  max-width: 250px;
 }
 
 .confirmation-modal {
@@ -104,26 +107,32 @@
   background-color: #0056b3;
 }
 
+.container {
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 10px;
+  /* align-items: center;  */
+  position: relative;
+}
+
 /* Options Styling */
 .ellipsis-icon {
-  position: absolute;
-  right: 570px;
-  /* display: inline-block; */
+  padding-right: 15px;
   cursor: pointer;
   color: #000;
-  /* margin-left: auto;
-  margin-right: 10px; */
-  /* font-size: 20px; */
+ 
 }
 .options {
   position: absolute;
-  top: 100%; 
+  top: 55%; 
   right: 0;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: none; 
+  z-index: 1;
+  min-width: 100px; 
 }
 
 .ellipsis-icon:hover .options {
@@ -147,8 +156,9 @@
 
 .post-modal-caption a{
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   font-weight: 600;
+  margin-top: 10px;
   color: #262626;
   text-decoration: none;
 }

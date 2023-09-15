@@ -53,9 +53,9 @@ function PostModal({ post, onClose }) {
             photo: post.photoUrl,
             author_id: post.author_id
         }
-         dispatch(updatePost(newPost))
-         .then(() => {
-           dispatch(fetchPost(post.id));
+        dispatch(updatePost(newPost))
+        .then(() => {
+          dispatch(fetchPost(post.id));
           setEditedCaption(newPost.caption);
           setEditModalOpen(false);
         });
@@ -86,7 +86,7 @@ function PostModal({ post, onClose }) {
                         />
                         <span className="post-username">{post.username}</span>
                         </Link>
-
+                        <div class="container">
               <span className="caption-text">{post.caption}</span>
               {post.authorId === currentUser.id && (
               <span className="ellipsis-icon" onClick={() => setOptionsVisible(!optionsVisible)}>
@@ -99,6 +99,7 @@ function PostModal({ post, onClose }) {
                 )}
               </span>
             )}
+            </div>
 
                   {/* Delete Confirmation Modal */}
                   {deleteModalOpen && (

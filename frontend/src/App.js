@@ -12,7 +12,7 @@ import AboutMe from './components/AboutMe/AboutMe';
 
 function App() {
   // const currentUser = sessionStorage.getItem("currentUser") 
-  const currentUser = useSelector(state => state.session.user); // Get currentUser from Redux store
+  const currentUser = useSelector(state => state.session.user); 
   return(
     <Router>
       <div>
@@ -21,8 +21,12 @@ function App() {
         
           <Route path="/signup" component={SignUp}/>
           <Route path="/signin" component={SignIn}/>
-          <Route path="/addPost" component={CreatePost}/>
-          <Route path="/profile/:userId" component={ProfilePage} />
+          <Route path="/addPost">
+            {currentUser !== null ? <CreatePost/> : <Redirect to="/signin" />}
+          </Route>
+          <Route path="/profile/:userId">  
+            {currentUser !== null ? <ProfilePage/> : <Redirect to="/signin" />}
+          </Route>
           <Route path="/aboutMe" component={AboutMe}/>
           <Route path="/">
           {currentUser !== null ? <SplashPage /> : <Redirect to="/signin" />}
@@ -32,9 +36,6 @@ function App() {
       </div>
     </Router>
   )
-  // return (
-  //   <h1>Hello world!</h1>
-  // );
 }
 
 export default App;
