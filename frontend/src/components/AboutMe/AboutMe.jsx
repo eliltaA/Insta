@@ -34,10 +34,10 @@ function AboutMe() {
           You can find me on:
           <ul>
             <li>
-              <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/elilta-abrham-87b79228b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </li>
             <li>
-              <a href="https://github.com/your-github-profile" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://github.com/eliltaA/Insta.git" target="_blank" rel="noopener noreferrer">GitHub</a>
             </li>
             <li>
               <a href="https://your-portfolio-website.com" target="_blank" rel="noopener noreferrer">Portfolio</a>

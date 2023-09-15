@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSearch, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSearch, faHome, faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
 import LogoutButton from '../session form/signOut';
 import Search from './search';
 import AboutMe from '../AboutMe/AboutMe';
@@ -52,7 +52,10 @@ function Header() {
                 className="user-avatar"
               />
             </Link>
-              {/* <AboutMe/> */}
+            <Link to="/aboutme" className="about-me-link">
+              <FontAwesomeIcon icon={faCircleQuestion} />
+              <span className="about">About Me</span>
+            </Link>
               <LogoutButton />
           </>
         )}
