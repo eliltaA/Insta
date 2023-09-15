@@ -4,7 +4,7 @@ import { fetchLikes } from "../../store/likesReducer";
 import { Link } from "react-router-dom";
 import "./likes.css";
 
-function Likes({ type, typeId }) {
+function Likes({ type, typeId, closepostModal }) {
     const dispatch = useDispatch();
     const likes = useSelector(state => state.likes);
 
@@ -20,6 +20,8 @@ function Likes({ type, typeId }) {
 
     const closeModal = () => {
         setIsModalOpen(false);
+        // console.log(closepostModal)
+        closepostModal();
     };
 
 
@@ -40,7 +42,7 @@ function Likes({ type, typeId }) {
                 <ul className="likes-list">
                     {filteredLikes.map(like => (
                     <li className="like-item" key={like.id}>
-                        <Link to={`/profile/${like.userId}`}>
+                        <Link to={`/profile/${like.userId}`} onClick={closeModal} >
                         <img
                             className="user-avatar"
                             src={
@@ -50,7 +52,7 @@ function Likes({ type, typeId }) {
                             }
                             alt={`${like.username}'s Profile`}
                         />
-                        <span className="like-username">{like.username}</span>
+                        <span>{like.username}</span>
                         </Link>
                     </li>
                     ))}

@@ -122,7 +122,7 @@ function PostModal({ post, onClose }) {
               <div className="comments-section">
               {Object.values(comments).filter(comment => comment.postId === post.id).map(comment => (
                 <React.Fragment key={comment.id}>
-                  <Comment comment={comment} />
+                  <Comment comment={comment} closepostModal={onClose}/>
                 </React.Fragment>
                 ))}
               </div>
@@ -133,7 +133,7 @@ function PostModal({ post, onClose }) {
                     <FontAwesomeIcon icon={faComment} size="lg" />
                 </span>
                 </div>
-                <Likes type="Post" typeId={post.id} />
+                <Likes type="Post" typeId={post.id} closepostModal={onClose}/>
                 <CreateComment postId={post.id} inputRef={commentInputRef} />
               </div>
               </div>

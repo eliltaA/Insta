@@ -8,7 +8,7 @@ import CreateLikeButton from '../likes/createLike';
 import EditDeleteComment from '../comments/editDeleteComment';
 import './comment.css'; 
 
-function Comment({ comment }) {
+function Comment({ comment, closepostModal }) {
 
     const userId = comment.authorId;
     const author = useSelector(getUser(userId));
@@ -30,10 +30,10 @@ function Comment({ comment }) {
             </Link>
           )}
         <span className="comment-text">{comment.commentBody}</span>
-        <CreateLikeButton likeableType="Comment" likeableId={comment.id} />
+        <span className="small-like-button" ><CreateLikeButton likeableType="Comment" likeableId={comment.id} /></span>
         </div>
         <div className='c-likes'>
-        <Likes type="Comment" typeId={comment.id} />
+        <Likes type="Comment" typeId={comment.id} closepostModal={closepostModal}/>
         <EditDeleteComment comment={comment}/>
         </div>
     </div>

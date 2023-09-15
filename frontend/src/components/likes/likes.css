@@ -15,3 +15,9 @@
 .likes-button:hover {
     text-decoration: none; /* Remove underline on hover */
 }
+
+.like-item a{
+    font-weight: 600;
+    color: #262626;
+    text-decoration: none;
+}

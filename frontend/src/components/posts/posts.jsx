@@ -50,7 +50,7 @@ function Posts () {
           <span className='like-icon'><CreateLikeButton likeableType="Post" likeableId={post.id} /></span>
           <span className='comment-icon'><FontAwesomeIcon icon={faComment} size="lg" /></span>
           </div>
-          <div className='likes-no'><Likes type="Post" typeId={post.id} /></div>
+          <div className='likes-no'><Likes type="Post" typeId={post.id} closepostModal={(e)=> setSelectedPost(null)}/></div>
           {post.caption && (
           <div className='name-caption'>
           <Link to={`/profile/${post.authorId}`}>{post.username}</Link>

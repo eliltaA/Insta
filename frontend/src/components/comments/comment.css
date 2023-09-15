@@ -110,7 +110,11 @@
     align-items: center;
     /* gap: 8px; */
     font-size: 12px;
-    color: #8e8e8e;
+    color: black;
+  }
+  .small-like-button button{
+    width: 24px; 
+    height: 24px 
   }
   
   /* .comment-content .fa-heart {
