@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSearch, faHome } from '@fortawesome/free-solid-svg-icons'
 import LogoutButton from '../session form/signOut';
 import Search from './search';
+import AboutMe from '../AboutMe/AboutMe';
 import DarkModeToggle from '../../darkMode';
 // import CreatePost from '../posts/createPost';
 
@@ -51,7 +52,7 @@ function Header() {
                 className="user-avatar"
               />
             </Link>
-
+              {/* <AboutMe/> */}
               <LogoutButton />
           </>
         )}
