@@ -45,6 +45,7 @@ return(
                     placeholder="Write a Caption"
                     value={caption}
                     onChange={(e) => setCaption(e.target.value)}
+                    maxlength="85"
                 />
                 <input className="create-post-submit" type="submit" value={'Add Post'} />
                 {/* <button type="submit"></button> */}

@@ -1,0 +1,63 @@
+.about-me-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .about-me-image {
+    flex: 1;
+    max-width: 300px;
+    margin-right: 20px;
+  }
+  
+  .about-me-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .about-me-text {
+    flex: 2;
+  }
+  
+  .about-me-text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .about-me-text p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .about-me-text ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .about-me-text ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .about-me-text ul li a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 10px;
+  }
+  
+  .about-me-text ul li a:hover {
+    color: #007bff; /* Change this to your preferred link hover color */
+  }
+  
+  /* FontAwesome icons styling */
+  .about-me-text ul li svg {
+    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    color: #333; /* Change this to your preferred icon color */
+  }
+  

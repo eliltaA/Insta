@@ -7,22 +7,29 @@ import { deletePost, getPost, updatePost } from '../../store/postsReducer';
 import { useSelector } from 'react-redux';
 import CreateComment from '../comments/createComments';
 import Comment from '../comments/comment';
+import Likes from '../likes/likes';
 import { fetchComments, getComments } from '../../store/commentsReducer';
+import { fetchPost } from '../../store/postsReducer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH, faComment } from '@fortawesome/free-solid-svg-icons';
+import CreateLikeButton from '../likes/createLike';
+import { getLikes } from '../../store/likesReducer';
 
 function PostModal({ post, onClose }) {
     const modalRef = useRef(null);
     const dispatch = useDispatch();
     const comments = useSelector(getComments);
+    const commentInputRef = useRef(null);
     const currentUser =  useSelector(state => state.session.user);
     const [editedCaption, setEditedCaption] = useState(post.caption)
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [optionsVisible, setOptionsVisible] = useState(false);
+    const [postUpdated, setPostUpdated] = useState(false);
   // console.log(post, "test")
     useEffect(() => {
       dispatch(fetchComments())
+      dispatch(fetchPost(post.id))
     },[dispatch])
   
 
@@ -38,7 +45,7 @@ function PostModal({ post, onClose }) {
         setDeleteModalOpen(false) 
     };
 
-    const handleEdit = async e => {
+    const handleEdit = (e) => {
         e.preventDefault();
         const newPost = {
             id: post.id,
@@ -46,11 +53,20 @@ function PostModal({ post, onClose }) {
             photo: post.photoUrl,
             author_id: post.author_id
         }
-        const edited = await dispatch(updatePost(newPost));
-        setEditedCaption(post.caption)
-        if (edited) onClose();
-        setEditModalOpen(false);
+         dispatch(updatePost(newPost))
+         .then(() => {
+           dispatch(fetchPost(post.id));
+          setEditedCaption(newPost.caption);
+          setEditModalOpen(false);
+        });
       };
+
+    const handleCommentIconClick = () => {
+  // Function to focus on the comment input field
+      if (commentInputRef.current) {
+        commentInputRef.current.focus();
+      }
+    };
       
       return (
         <div className="post-modal-container" onClick={closeModal} ref={modalRef}>
@@ -58,8 +74,6 @@ function PostModal({ post, onClose }) {
               <img className="post-modal-image" src={post.photoUrl} alt="Post" />
               <div className='post-cont'>
               <div className="post-modal-caption">
-                {/* <div className="caption-username">{post.username}</div> */}
-                {/* <Link to={`/profile/${post.authorId}`}>{post.username}</Link> */}
                 <Link key={post.authorId} to={`/profile/${post.authorId}`}>
                         <img
                             className="user-avatar"
@@ -75,7 +89,7 @@ function PostModal({ post, onClose }) {
 
               <span className="caption-text">{post.caption}</span>
               {post.authorId === currentUser.id && (
-              <div className="ellipsis-icon" onClick={() => setOptionsVisible(!optionsVisible)}>
+              <span className="ellipsis-icon" onClick={() => setOptionsVisible(!optionsVisible)}>
                 <FontAwesomeIcon icon={faEllipsisH} size="lg" />
                 {optionsVisible && (
                   <div className="options">
@@ -83,7 +97,7 @@ function PostModal({ post, onClose }) {
                     <button className="edit-button" onClick={() => setEditModalOpen(true)}>Edit</button>
                   </div>
                 )}
-              </div>
+              </span>
             )}
 
                   {/* Delete Confirmation Modal */}
@@ -98,7 +112,7 @@ function PostModal({ post, onClose }) {
                   {/* Edit Confirmation Modal */}
                   {editModalOpen && (
                     <div className="confirmation-modal">
-                      <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} />
+                      <input className="edit-caption-input" type="text" value={editedCaption} onChange={e => setEditedCaption(e.target.value)} maxlength="85"/>
                       <button className="edit-button" onClick={handleEdit}>Confirm Edit</button>
                       <button onClick={() => setEditModalOpen(false)}>Cancel</button>
                     </div>
@@ -112,7 +126,14 @@ function PostModal({ post, onClose }) {
                 ))}
               </div>
               <div className='create'>
-                <CreateComment postId={post.id}/>
+                <div className='like-and-comment'>
+                <CreateLikeButton likeableType="Post" likeableId={post.id}/> 
+                <span className="comment-icon" onClick={handleCommentIconClick}>
+                    <FontAwesomeIcon icon={faComment} size="lg" />
+                </span>
+                </div>
+                <Likes type="Post" typeId={post.id} />
+                <CreateComment postId={post.id} inputRef={commentInputRef} />
               </div>
               </div>
             </div>

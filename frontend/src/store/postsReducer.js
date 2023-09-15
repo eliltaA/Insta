@@ -41,18 +41,17 @@ export const fetchPosts = () => async dispatch => {
     }else{
 
     }
-  }
-  
-  export const fetchPost = postId => async dispatch => {
+}
+
+export const fetchPost = postId => async dispatch => {
     const res = await csrfFetch(`/api/posts/${postId}`)
     if (res.ok){
-        const post = res.json();
+        const post = await res.json();
         dispatch(receivePost(post))
         return post
     }
-  }
-  
-  
+}
+
 export const createPost = post => async dispatch => {
     // debugger
     const res = await csrfFetch('/api/posts', {
@@ -76,7 +75,7 @@ export const createPost = post => async dispatch => {
 export const updatePost = postDetails => async dispatch => {
     // debugger
     const res = await csrfFetch(`/api/posts/${postDetails.id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         body: JSON.stringify(postDetails)
     })
     if (res.ok) {

@@ -1,4 +1,5 @@
 import { csrfFetch } from "../utils/csrf";
+// import { setCurrentUser } from "./sessionReducer";
 
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
@@ -76,6 +77,7 @@ export const updateUser = (user, userId) => async dispatch => {
     if (res.ok) {
         const user = await res.json();
         dispatch(receiveUser(user));
+        // dispatch(setCurrentUser(user))
         return user;
     }
 }

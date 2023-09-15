@@ -8,6 +8,7 @@ import PostModal from './postModal';
 import FollowButton from '../followings/followButton';
 import Followings from '../followings/followings';
 import Followers from '../followings/followers';
+// import { storeCSRFToken } from '../../store/sessionReducer';
 
 function ProfilePage() {
   const { userId } = useParams(); 
@@ -57,14 +58,22 @@ const handleSaveChanges = (e) => {
     name: editedName,
     bio: editedBio,
   }
+  const editedCurrentUser = {
+    ...user,
+    name: editedName,
+    bio: editedBio,
+  }
+  console.log(editedCurrentUser)
   const formData = new FormData();
 
   for (const key in editedUser) {
       formData.append(`user[${key}]`, editedUser[key]);
   }
   dispatch(updateUser(formData, currentUser.id));
-  setEditedName(user.name)
-  setEditedBio(user.bio)
+  sessionStorage.setItem("currentUser", JSON.stringify(editedCurrentUser));
+  // storeCSRFToken(editedUser)
+  setEditedName(currentUser.name)
+  setEditedBio(currentUser.bio)
   setIsEditOpen(false);
 };
 
@@ -87,11 +96,12 @@ const handleCancelEdit = () => {
         </div>
         <div className="profile-info">
           <h2>{user.username}</h2>
-          <div className="profile-stats">
-          <p className="post-count">Posts: {Object.values(posts).length}</p>
+          {currentUser.id !== user.id && ( <FollowButton followeeUser={user} /> )}
           {currentUser.id === user.id && ( 
               <button onClick={handleEditClick}>Edit Profile</button>
             )}
+          <div className="profile-stats">
+          <p className="post-count">{Object.values(posts).length} Posts</p>
             {isEditOpen && (
         <div className="edit-profile-modal-container">
         <div className="edit-profile-form">
@@ -117,10 +127,10 @@ const handleCancelEdit = () => {
         </div>
         </div>
       )}
-          {currentUser.id !== user.id && ( <FollowButton followeeUser={user} /> )}
+          <div className='follow-list-button'>
           <Followers user={user}/>
           <Followings user={user}/>
-
+          </div>
           </div>
           <p className="name">{user.name}</p>
           <p className="name">{user.bio}</p>

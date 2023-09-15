@@ -2,6 +2,7 @@ import { useDispatch,  useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchFollowings, getFollowings, deleteFollowing } from "../../store/followingReducer";
+import FollowButton from "./followButton";
 import './followings.css'
 
 function Followers ({user}){
@@ -11,7 +12,7 @@ function Followers ({user}){
     const currentUser =  useSelector(state => state.session.user);
 
     const openModal = () => {
-      dispatch(fetchFollowings()); // Fetch followings data when the modal opens
+      dispatch(fetchFollowings()); 
     setIsModalOpen(true);
     };
 
@@ -20,7 +21,7 @@ function Followers ({user}){
     };
 
     const handleRemoveFollower = (followingId) => {
-      dispatch(deleteFollowing(followingId)); // Dispatch the action to remove the follower
+      dispatch(deleteFollowing(followingId)); 
       // Optionally, you can also update your local state to re-render the follower list.
     };
 
@@ -34,7 +35,7 @@ function Followers ({user}){
 
     return (
       <div className="followings">
-      <button onClick={openModal}>{followersCount}Followers</button>
+      <p onClick={openModal}>{followersCount} Followers</p>
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -45,14 +46,18 @@ function Followers ({user}){
             <ul>
               {Object.values(followings).map((following) => {
                 if (user.id === following.followeeId) {
+                  const followeeUser = {id: following.followerId, username: following.follower}
                   return( 
                   <li key={following.id}>
                     {following.followerProPic === null ? <img className="user-avatar" src={'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'} alt={`${following.follower}'s Profile`} /> :
                       <img className="user-avatar" src={following.followerProPic} alt={`${following.follower}'s Profile`} />}
                     {/* <img className="user-avatar" src={following.followerProPic} alt={`${following.follower}'s Profile`} /> */}
-                    <Link to={`/profile/${following.followerId}`} onClick={closeModal}>{following.follower}</Link>
+                    <Link to={`/profile/${following.followerId}`} onClick={closeModal} className="f-name">{following.follower}</Link>
+                    {following.followerId !== currentUser.id && (
+                    <p><FollowButton followeeUser={followeeUser} /></p>
+                    )}
                     {user.id === currentUser.id && (
-                    <button onClick={() => handleRemoveFollower(following.id)}>Remove</button>)}
+                    <p onClick={() => handleRemoveFollower(following.id)}>Remove</p>)}
                   </li>
                   );
                 }
