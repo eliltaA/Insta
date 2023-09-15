@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -17,22 +17,28 @@ function Posts () {
   const posts =  useSelector(getPosts);
   const [selectedPost, setSelectedPost] = useState(null);
   const comments = useSelector(getComments)
-  // console.log(posts.comments)
+  
 
   useEffect(() => {
     dispatch(fetchPosts())
     dispatch(fetchComments())
   },[dispatch])
 
+
   const handlePostClick = (e, post) => {
-    if (!e.target.classList.contains("likes-no") && !e.target.closest(".likes-no")){
-      setSelectedPost(post)
-    }
+      const isLikesNo = e.target.classList.contains("likes-no") || e.target.closest(".likes-no");
+      const isLikeCommentIcons = e.target.classList.contains("like-icon") || e.target.closest(".like-icon");
+      const isCreate = e.target.classList.contains("create-comm") || e.target.closest(".create-comment");
+      if (isLikesNo || isLikeCommentIcons || isCreate) {
+        return;
+      }
+      setSelectedPost(post);
   }
   
+
   return (
     <div className="posts-container">
-      {Object.values(posts).map(post => (
+      {Object.values(posts).reverse().map((post) => (
         <div className="post-item" key={post.id} onClick={(e)=> handlePostClick(e, post)}>
           <div className="user-info">
             {post.profilePicture === null ? <img className="user-avatar" src='https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG' alt={`${post.username}'s Profile`} /> :
@@ -41,17 +47,17 @@ function Posts () {
           </div>
           <img className="post-image" src={post.photoUrl} alt="Post" />
           <div className='like-comment-icons'>
-          <CreateLikeButton likeableType="Post" likeableId={post.id} />
+          <span className='like-icon'><CreateLikeButton likeableType="Post" likeableId={post.id} /></span>
           <span className='comment-icon'><FontAwesomeIcon icon={faComment} size="lg" /></span>
           </div>
           <div className='likes-no'><Likes type="Post" typeId={post.id} /></div>
           {post.caption && (
           <div className='name-caption'>
-          <Link to={`/profile/${post.userId}`}>{post.username}</Link>
+          <Link to={`/profile/${post.authorId}`}>{post.username}</Link>
           <span className="post-caption">{post.caption}</span>
           </div>)}
           <div className='comments-count'>View all {Object.values(comments).filter(comment => comment.postId === post.id).length} comments</div>
-          <CreateComment/>
+          <span className='create-comm'><CreateComment postId={post.id} /></span>
           </div>
       ))}
       {selectedPost && (

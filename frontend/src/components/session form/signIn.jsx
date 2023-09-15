@@ -33,7 +33,7 @@ function SignInForm() {
       else if (data) setErrors([data])
       else setErrors([res.statusText])
     })
-   
+  
   };
 
   const handleDemoSignIn = (e) => {
@@ -44,7 +44,6 @@ function SignInForm() {
     };
 
     dispatch(login(demoUserCredentials));
-  
   };
 
   return (

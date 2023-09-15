@@ -21,7 +21,17 @@ function EditDeleteComment ({comment}){
             author_id: currentUser.id,
             comment_body: editedText
         }
-            dispatch(updateComment(commentDetail));
+        dispatch(updateComment(commentDetail))
+        .then(() => {
+            // Once the update is successful, reset the text and exit edit mode
+            setEditedText(commentDetail.comment_body);
+            setIsEditing(false);
+        });
+        };
+
+        const handleCancel = (e) => {
+            e.preventDefault();
+            // Reset the text and exit edit mode
             setEditedText(comment.commentBody);
             setIsEditing(false);
         };
@@ -30,7 +40,7 @@ function EditDeleteComment ({comment}){
             e.preventDefault();
             dispatch(deleteComment(comment.id));
         };
-    
+        if (!comment) return null;
         return (
             <div className="comment">
                 <div className="comment-content">
@@ -38,10 +48,11 @@ function EditDeleteComment ({comment}){
                         {/* Display username */}
                     {/* </div> */} 
                     {isEditing ? (
-                        <input
+                        <textarea
                             type="text"
                             value={editedText}
                             onChange={(e) => setEditedText(e.target.value)}
+                            maxlength="85"
                         />
                     ) : (
                         <span className="comment-text">{comment.comment_body}</span>
@@ -53,7 +64,10 @@ function EditDeleteComment ({comment}){
                         </div>
                     )}
                     {isEditing && (
+                    <div className='comment-actions'>
                         <button onClick={handleSave}>Save</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
                     )}
                 </div>
             </div>

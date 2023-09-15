@@ -1,11 +1,24 @@
 /* Followings modal button style */
 .followings button {
-    background-color: transparent;
     border: none;
     cursor: pointer;
-    color: black;
+    
   }
   
+  .followings li {
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: center; 
+    margin-bottom: 10px; 
+  }
+
+  .buttons-container {
+    /* display: flex; */
+    /* flex-direction: column; */
+    margin-left: 10px;
+    /* align-items: center;  */
+  }
+
   /* Modal overlay */
   .modal-overlay {
     position: fixed;
@@ -44,8 +57,14 @@
   .modal-content li {
     padding: 8px 0;
     border-bottom: 1px solid #ccc;
+    display: flex;
   }
   
+  .f-name{
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+  }
   /* Close button */
   /* .modal-content button {
     background-color: blue;

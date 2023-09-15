@@ -9,8 +9,13 @@ import { getUser } from "../../store/usersReducers";
 function Followings ({user}){
   // console.log(user)
     const dispatch = useDispatch();
+    const currentUser =  useSelector(state => state.session.user);
     const followings = useSelector(getFollowings);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(()=>{
+      dispatch(fetchFollowings());
+    },[dispatch])
 
     const openModal = () => {
       dispatch(fetchFollowings());
@@ -31,7 +36,7 @@ function Followings ({user}){
 
     return (
       <div className="followings">
-      <button onClick={openModal}>{followingsCount}Followings</button>
+      <p onClick={openModal}>{followingsCount} Followings</p>
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -47,8 +52,12 @@ function Followings ({user}){
                     <li key={following.id}>
                       {following.followeeProPic === null ? <img className="user-avatar" src={'https://insta-hosting.s3.us-west-2.amazonaws.com/ProfilePicture.JPG'} alt={`${following.followee}'s Profile`} /> :
                       <img className="user-avatar" src={following.followeeProPic} alt={`${following.followee}'s Profile`} />}
-                      <Link to={`/profile/${following.followeeId}`} onClick={closeModal}>{following.followee}</Link>
+                      <Link to={`/profile/${following.followeeId}`} onClick={closeModal} className="f-name">{following.followee}</Link>
+                      <div className="buttons-container">
+                      {following.followeeId !== currentUser.id && (
                       <FollowButton followeeUser={followeeUser} />
+                      )}
+                      </div>
                     </li>
                   );
                 }

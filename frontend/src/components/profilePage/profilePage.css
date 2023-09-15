@@ -30,11 +30,26 @@
     display: flex;
     margin-top: 10px;
   }
+
+  .follow-list-button{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+  }
+
+  .post-count{
+    font-weight: bold;
+    /* font-size: 900px; */
+  }
   
   .profile-stats p {
     margin: 0 20px 0 0;
     font-weight: bold;
     color: #262626;
+    padding-left: 2px;
   }
   
   .profile-bio {
@@ -194,7 +209,8 @@
   
   .profile-stats .post-count {
     margin-right: 20px;
-    font-size: 14px;
+    font-size: 17px;
+    font-weight: bold;
   }
   
   .edit-button {
@@ -235,6 +251,8 @@
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
+    width: fit-content;
+    padding: 8px;
   }
   
   .edit-profile-form input[type="text"],
@@ -242,10 +260,12 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 100%;
   }
   
   .edit-profile-form button {
-    background-color: #0e7ac2;
+    /* background-color: #0e7ac2; */
+    margin-bottom: 10px;
     color: #fff;
     border: white;
     cursor: pointer;
