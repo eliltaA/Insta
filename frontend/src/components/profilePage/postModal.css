@@ -14,44 +14,52 @@
 
 .post-modal-content {
   display: flex;
-    flex-direction: row;
+  flex-direction: row;
   background-color: #fff;
   border-radius: 3px;
   max-width: 800px;
+  /* max-height: ; */
   width: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .post-modal-image {
   width: 400px;
-  height: auto;
+  height: 500px;
+  max-height: 700px;
   object-fit: cover;
+  padding-top: 50px;
+  /* align-items: center; */
+  /* margin-top: 20%; */
+  /* margin-bottom: ; */
 }
 
 .post-cont {
   flex: 1;
-  padding: 16px;
+  padding-left: 16px;
 }
 
 .post-modal-caption {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-bottom: 10px;
+  /* justify-content: space-between; */
+  padding-top: 6px;
+  padding-bottom: 1px;
   border-bottom: 1px solid #e0e0e0;
 }
 
-
-/* Caption styling */
 .caption-text {
   font-size: 16px;
-  line-height: 1.5;
-  margin-top: 10px;
-  padding: 10px;
-  border-top: 1px solid #eee;
+  line-height: 18px;
+  /* line-height: 1.5; */
+  /* margin-top: 10px; */
+  padding-left: 10px;
+  padding-right: 27px;
+  /* position: absolute; */
+  max-width: fit-content;
+  /* top: 9px; */
 }
 
-/* Edit Modal styling */
 .confirmation-modal {
   /* display: none; */
   position: fixed;
@@ -98,25 +106,15 @@
 
 /* Options Styling */
 .ellipsis-icon {
-  position: relative;
+  position: absolute;
+  right: 570px;
+  /* display: inline-block; */
   cursor: pointer;
   color: #000;
   /* margin-left: auto;
-  margin-right: 10px;
-  font-size: 20px; */
+  margin-right: 10px; */
+  /* font-size: 20px; */
 }
-
-/* .options {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 0;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  z-index: 1;
-} */
 .options {
   position: absolute;
   top: 100%; 
@@ -147,18 +145,35 @@
   background-color: #f0f0f0;
 }
 
-.post-username{
+.post-modal-caption a{
+  display: flex;
+  align-items: center;
   font-weight: 600;
   color: #262626;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 .comments-section{
-  height: 600px;
+  height: 450px;
   overflow-y: auto;
 }
 
+.create {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items to the left (start) */
+  align-items: flex-start; /* Center items vertically */
+}
 
+.like-and-comment{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comments-icon{
+  margin-left: 10px;
+}
 /* .delete-button,
 .edit-button {
   padding: 10px;

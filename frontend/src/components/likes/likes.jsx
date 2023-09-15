@@ -26,7 +26,7 @@ function Likes({ type, typeId }) {
     const filteredLikes = Object.values(likes).filter(like => {
         return like.likeableType === type && like.likeableId === typeId;
     });
-
+    
     return (
         <div className="likes">
         <button className="likes-button" onClick={openModal}>{filteredLikes.length} Likes</button>

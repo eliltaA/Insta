@@ -1,6 +1,6 @@
 json.extract! @like, :id, :user_id, :likeable_type, :likeable_id
 json.username @like.user.username
-
+json.profile_picture @like.user.profile_picture.url
 
 
 # json.set! @like.likeable_type.downcase do 
