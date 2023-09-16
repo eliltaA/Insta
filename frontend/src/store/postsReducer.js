@@ -28,7 +28,7 @@ export const postError = error => ({
 })
 
 export const getPosts = (state) => state.posts;
-export const getPost = (state, postId) => state.posts[postId];
+export const getPost = (postId) => (state) => state.posts[postId];
 
 
 export const fetchPosts = () => async dispatch => {
@@ -115,7 +115,12 @@ const postsReducer = (state = {}, action) => {
             delete nextState[action.postId];
             return nextState;
         case RECEIVE_USER: 
-            return action.user.posts
+            // return action.user.posts
+            if (action.user.posts) {
+                return action.user.posts;
+            } else {
+                return {};
+            }
         default:
             return state;
     }

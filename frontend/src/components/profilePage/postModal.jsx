@@ -19,6 +19,7 @@ function PostModal({ post, onClose }) {
     const modalRef = useRef(null);
     const dispatch = useDispatch();
     const comments = useSelector(getComments);
+    const newPost = useSelector(getPost(post.id))
     const commentInputRef = useRef(null);
     const currentUser =  useSelector(state => state.session.user);
     const [editedCaption, setEditedCaption] = useState(post.caption)
@@ -29,9 +30,11 @@ function PostModal({ post, onClose }) {
   // console.log(post, "test")
     useEffect(() => {
       dispatch(fetchComments())
-      dispatch(fetchPost(post.id))
     },[dispatch])
   
+  useEffect(() => {
+    dispatch(fetchPost(post.id))
+  }, [dispatch]);
 
     const closeModal = e => {
         if (modalRef.current === e.target) {
@@ -45,20 +48,20 @@ function PostModal({ post, onClose }) {
         setDeleteModalOpen(false) 
     };
 
-    const handleEdit = (e) => {
+    const handleEdit = async (e) => {
         e.preventDefault();
+        setEditModalOpen(true);
         const newPost = {
             id: post.id,
             caption: editedCaption,
             photo: post.photoUrl,
             author_id: post.author_id
         }
-        dispatch(updatePost(newPost))
-        .then(() => {
-          dispatch(fetchPost(post.id));
-          setEditedCaption(newPost.caption);
+        await dispatch(updatePost(newPost))
+        await dispatch(fetchPost(post.id))
+          // setEditedCaption(newPost.caption);
+          setPostUpdated(true)
           setEditModalOpen(false);
-        });
       };
 
     const handleCommentIconClick = () => {
@@ -87,7 +90,7 @@ function PostModal({ post, onClose }) {
                         <span className="post-username">{post.username}</span>
                         </Link>
                         <div class="container">
-              <span className="caption-text">{post.caption}</span>
+              <span className="caption-text">{newPost.caption}</span>
               {post.authorId === currentUser.id && (
               <span className="ellipsis-icon" onClick={() => setOptionsVisible(!optionsVisible)}>
                 <FontAwesomeIcon icon={faEllipsisH} size="lg" />

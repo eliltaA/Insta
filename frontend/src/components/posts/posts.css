@@ -95,11 +95,12 @@
 
 .post-caption {
   padding: 5px;
+  padding-right: 0px;
   font-size: 14px;
-  line-height: 18px;
+  /* line-height: 18px; */
   /* max-width: fit-content; */
   word-wrap: break-word;
-  max-width: 380px;
+  max-width: 375px;
 }
 
 .name-caption{
