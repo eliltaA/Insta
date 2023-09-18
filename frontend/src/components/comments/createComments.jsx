@@ -27,7 +27,7 @@ function CreateComment ({postId, inputRef}){
 
     return (
             <form className="create-comment" onSubmit={handleSubmit}>
-        <textarea ref={inputRef} className="comment-input" placeholder="Add a comment..." value={comment} onChange={(e)=> setComment(e.target.value)} maxlength="85"/>
+        <textarea ref={inputRef} className="comment-input" placeholder="Add a comment..." value={comment} onChange={(e)=> setComment(e.target.value)} maxLength="85"/>
         <FontAwesomeIcon icon={faSmile} className="smiley-icon"/>
         <button className="comment-submit-button" type="submit">Post</button>
             </form>

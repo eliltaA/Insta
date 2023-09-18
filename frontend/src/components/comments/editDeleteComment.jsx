@@ -52,7 +52,7 @@ function EditDeleteComment ({comment}){
                             type="text"
                             value={editedText}
                             onChange={(e) => setEditedText(e.target.value)}
-                            maxlength="85"
+                            maxLength="85"
                         />
                     ) : (
                         <span className="comment-text">{comment.comment_body}</span>
