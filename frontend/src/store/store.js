@@ -1,4 +1,4 @@
-import { legacy_createStore, combineReducers, applyMiddleware } from 'redux';
+import { legacy_createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import sessionReducer from './sessionReducer';
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
@@ -20,16 +20,16 @@ const rootReducer = combineReducers({
   errors: errorsReducer,
   darkMode: darkModeReducer
 })
-// let enhancer;
+let enhancer;
 
-// if (process.env.NODE_ENV === 'production') {
-//   enhancer = applyMiddleware(thunk);
-// } else {
-//   const logger = require('redux-logger').default;
-//   const composeEnhancers =
-//     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
-// }
+if (process.env.NODE_ENV === 'production') {
+  enhancer = applyMiddleware(thunk);
+} else {
+  const logger = require('redux-logger').default;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+}
 
 // const middleware = [thunk]
 
@@ -42,7 +42,8 @@ const configureStore = (preloadedState) => (
   legacy_createStore(
     rootReducer, 
     preloadedState, 
-    applyMiddleware(thunk, logger)
+    // applyMiddleware(thunk, logger)
+    enhancer
   )
 )
 
