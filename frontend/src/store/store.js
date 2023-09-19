@@ -33,10 +33,10 @@ const rootReducer = combineReducers({
 
 const middleware = [thunk]
 
-if (process.env.NODE_ENV !== 'production') {
-  const logger = require('redux-logger')
-  middleware.push(logger)
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   const logger = require('redux-logger')
+//   middleware.push(logger)
+// }
 
 const configureStore = (preloadedState) => (
   legacy_createStore(
