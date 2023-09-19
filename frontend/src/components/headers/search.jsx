@@ -38,6 +38,7 @@ function Search(){
 
     const closeDropdown = () => {
         setDropdownVisible(false);
+        setSearchParams('');
     };
 
     return (
@@ -49,7 +50,7 @@ function Search(){
                 onChange={handleInputChange('search')}
             />
         </form>
-        {dropdownVisible && (
+        {dropdownVisible && searchParams !== '' &&(
         <div className="search-results">
         {searchParams && Object.values(searchedUsers).length > 0 ? (
             <div className="search-dropdown">
@@ -69,7 +70,8 @@ function Search(){
                 </Link>
                 ))}
             </div>
-            ) : null}
+            ) : <> <span className="search-dropdown">User not found </span>
+            <button className="close-dropdown-button" onClick={closeDropdown}> X </button> </>}
             </div>
             )}
         </div>

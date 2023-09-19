@@ -75,10 +75,9 @@
     border-radius: 4px;
     margin-top: 10px;
   } */
-  /* Add your existing CSS rules here */
+
 
 .modal-overlay {
-    /* Styles for the modal overlay */
     position: fixed;
     top: 0;
     left: 0;
@@ -91,7 +90,6 @@
   }
   
   .modal-content {
-    /* Styles for the modal content */
     background-color: white;
     padding: 20px;
     border-radius: 5px;
@@ -100,12 +98,11 @@
   }
   
   .close-button {
-    /* Styles for the close button */
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 20px;
-    background-color: transparent;
+    /* background-color: transparent; */
     border: none;
     cursor: pointer;
     padding: 5px;
@@ -113,6 +110,5 @@
     justify-content: center;
     align-items: center;
   }
-  
-  /* Add any additional styling you want */
+
   
