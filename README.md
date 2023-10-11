@@ -19,6 +19,7 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 - **Secure Sign-Up**: Users can create accounts securely (utilized CSRF Tokens for enhanced security).
 - **Authentication**: Ensures that only registered users can access the platform.
 - **Demo User**: A demo user account is available for users to try out the platform.
+![Insta Screenshot](screenshots/signin.png)
 
 ## Image Upload and Display and User Feed
 - **Create Posts**: Users can create posts with uploaded images, edit them, and delete them.
@@ -28,7 +29,7 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 ## User Profiles
 - **Unique Profiles**: Each user has a unique profile where they can upload a profile picture, write a bio, and update their contact information.
 
-  ![Insta Screenshot](screenshots/Screen Shot 2023-09-29 at 1.54.17 PM.png)
+  ![Insta Screenshot](screenshots/profile.png)
 
 ## Likes
 - **Like and Unlike**: Users can like and unlike posts and comments to show appreciation and engagement.
