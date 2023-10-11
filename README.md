@@ -27,7 +27,9 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 
 ## User Profiles
 - **Unique Profiles**: Each user has a unique profile where they can upload a profile picture, write a bio, and update their contact information.
-  
+
+  ![Insta Screenshot](screenshots/Screen Shot 2023-09-29 at 1.54.17 PM.png)
+
 ## Likes
 - **Like and Unlike**: Users can like and unlike posts and comments to show appreciation and engagement.
   - Utilized a polymorphic association table to handle likes efficiently.
