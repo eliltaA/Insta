@@ -30,12 +30,14 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 ## User Profiles
 - **Unique Profiles**: Each user has a unique profile where they can upload a profile picture, write a bio, and update their contact information.
 
-  ![Insta Screenshot](screenshots/profile.png)
+   <img src="screenshots/profile.png" height="200">
 
 ## Likes
 - **Like and Unlike**: Users can like and unlike posts and comments to show appreciation and engagement.
   - Utilized a polymorphic association table to handle likes efficiently.
   - This allows likes to be associated with various types of content, such as posts and comments, using a single table and reducing redundancy.
+
+   <img src="screenshots/likes.png" height="300">
 
 ## Comments
 - **Post, Edit, and Delete**: Users can post comments, edit them, and delete them to interact with posts effectively.
@@ -44,7 +46,10 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 - **Follow Other Users**: Users can follow other users to receive their posts in their feed.
 - **Unfollow Users**: Users can unfollow users at any time to control their feed content.
 - **Remove Follower**: Users can also remove followers if needed.
+
+   <img src="screenshots/followings.png" height="200">  <img src="screenshots/followers.png" height="200">
   
 ## Search Functionality
 - **Search Users**: Users can search for other users using keywords or names, making users discovery easy.
 
+  <img src="screenshots/search.png" height="200">
