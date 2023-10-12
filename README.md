@@ -40,6 +40,7 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
   - This allows likes to be associated with various types of content, such as posts and comments, using a single table and reducing redundancy.
 
    <img src="screenshots/like.png" height="200"> 
+   
    <img src="screenshots/likes.png" height="300">
 
 ## Comments
