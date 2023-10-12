@@ -37,10 +37,9 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 ## Likes
 - **Like and Unlike**: Users can like and unlike posts and comments to show appreciation and engagement.
   - Utilized a polymorphic association table to handle likes efficiently.
-   <img src="screenshots/like.png" height="300">
   - This allows likes to be associated with various types of content, such as posts and comments, using a single table and reducing redundancy.
 
-   <img src="screenshots/likes.png" height="300">
+   <img src="screenshots/like.png" height="300"> <img src="screenshots/likes.png" height="300">
 
 ## Comments
 - **Post, Edit, and Delete**: Users can post comments, edit them, and delete them to interact with posts effectively.
