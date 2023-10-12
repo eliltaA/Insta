@@ -39,7 +39,7 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
   - Utilized a polymorphic association table to handle likes efficiently.
   - This allows likes to be associated with various types of content, such as posts and comments, using a single table and reducing redundancy.
 
-   <img src="screenshots/like.png" height="200"> <img src="screenshots/likes.png" height="200">
+   <img src="screenshots/like.png" height="200"> <img src="screenshots/likes.png" height="300">
 
 ## Comments
 - **Post, Edit, and Delete**: Users can post comments, edit them, and delete them to interact with posts effectively.
