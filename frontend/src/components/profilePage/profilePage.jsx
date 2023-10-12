@@ -41,7 +41,7 @@ const handleUploadProPic = (e) => {
   setProPicModal(false);
 }
 
-  const handleRemoveProPic = (e) => {
+const handleRemoveProPic = (e) => {
     e.preventDefault();
     dispatch(deleteProPic(currentUser.id));
   setProPicModal(false);

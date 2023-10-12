@@ -30,11 +30,14 @@ Visit the app: [Insta](https://insta-hosting.onrender.com)
 ## User Profiles
 - **Unique Profiles**: Each user has a unique profile where they can upload a profile picture, write a bio, and update their contact information.
 
+   <img src="screenshots/propic.png" height="200">
+
    <img src="screenshots/profile.png" height="200">
 
 ## Likes
 - **Like and Unlike**: Users can like and unlike posts and comments to show appreciation and engagement.
   - Utilized a polymorphic association table to handle likes efficiently.
+   <img src="screenshots/like.png" height="300">
   - This allows likes to be associated with various types of content, such as posts and comments, using a single table and reducing redundancy.
 
    <img src="screenshots/likes.png" height="300">
